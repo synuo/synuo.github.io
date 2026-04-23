@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soyun Lee — CV & Portfolio</title>
+<title>Soyun Lee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F5F2EC;
-    --fg: #1A1A18;
-    --accent: #C8622A;
-    --accent2: #4A6FA5;
-    --muted: #7A7A72;
-    --border: #D8D4CA;
-    --card: #FFFDF8;
-    --tag-research: #FFF0E8;
-    --tag-research-text: #C8622A;
-    --tag-project: #E8EFF8;
-    --tag-project-text: #4A6FA5;
-    --tag-course: #EEF5EE;
-    --tag-course-text: #3A7A3A;
-    --tag-hack: #F5EEF8;
-    --tag-hack-text: #7A4FA5;
+    --bg: #FFFFFF;
+    --fg: #2A1A1E;
+    --accent: #852936;
+    --accent2: #C5D9E2;
+    --muted: #8A7A7E;
+    --border: #E8DEDE;
+    --card: #FAF7EA;
+    --tag-research: #fde8ec;
+    --tag-research-text: #852936;
+    --tag-project: #deeaf0;
+    --tag-project-text: #3a6a7a;
+    --tag-course: #f0eaf5;
+    --tag-course-text: #6a4a7a;
+    --tag-hack: #fce8f0;
+    --tag-hack-text: #852936;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,7 +58,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(245,242,236,0.88);
+    background: rgba(255,255,255,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
@@ -139,7 +139,7 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: #852936;
     margin-bottom: 12px;
   }
 
@@ -153,7 +153,7 @@
 
   .hero-name em {
     font-style: italic;
-    color: var(--accent);
+    color: #852936;
   }
 
   .hero-bio {
@@ -187,10 +187,10 @@
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     padding: 4px 10px;
-    border: 1px solid var(--border);
+    border: 1px solid #E1AEBC;
     border-radius: 100px;
-    color: var(--fg);
-    background: var(--card);
+    color: #852936;
+    background: #fde8ec;
   }
 
   .hero-links {
@@ -207,27 +207,29 @@
     font-size: 11px;
     letter-spacing: 0.05em;
     text-decoration: none;
-    color: var(--fg);
-    border: 1px solid var(--fg);
+    color: #2A1A1E;
+    border: 1px solid #C5D9E2;
     padding: 7px 14px;
     border-radius: 2px;
-    transition: background 0.18s, color 0.18s;
+    background: #F0F6F9;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
   }
 
   .hero-link:hover {
-    background: var(--fg);
-    color: var(--bg);
+    background: #C5D9E2;
+    border-color: #9abfce;
+    color: #2A1A1E;
   }
 
   .hero-link.primary {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: #852936;
+    border-color: #852936;
     color: #fff;
   }
 
   .hero-link.primary:hover {
-    background: #a84e20;
-    border-color: #a84e20;
+    background: #6a1e2a;
+    border-color: #6a1e2a;
   }
 
   /* ── SECTION HEADER ── */
@@ -249,7 +251,7 @@
   .section-num {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    color: var(--accent);
+    color: #852936;
     letter-spacing: 0.08em;
   }
 
@@ -297,7 +299,7 @@
   .pub-item {
     background: var(--card);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
+    border-left: 3px solid #852936;
     padding: 20px 22px;
     border-radius: 0 2px 2px 0;
   }
@@ -319,7 +321,7 @@
   }
 
   .pub-venue {
-    color: var(--accent);
+    color: #852936;
     font-weight: 500;
   }
 
@@ -328,15 +330,15 @@
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     padding: 2px 8px;
-    background: var(--tag-research);
-    color: var(--tag-research-text);
+    background: #fde8ec;
+    color: #852936;
     border-radius: 100px;
     letter-spacing: 0.04em;
   }
 
   .pub-badge.review {
-    background: var(--tag-project);
-    color: var(--tag-project-text);
+    background: #deeaf0;
+    color: #3a6a7a;
   }
 
   /* ── EXPERIENCE ── */
@@ -365,7 +367,7 @@
   .exp-role {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    color: var(--accent);
+    color: #852936;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -418,9 +420,9 @@
   }
 
   .filter-btn:hover, .filter-btn.active {
-    background: var(--fg);
-    color: var(--bg);
-    border-color: var(--fg);
+    background: #852936;
+    color: #fff;
+    border-color: #852936;
   }
 
   .projects-grid {
@@ -458,11 +460,12 @@
     letter-spacing: 0.03em;
   }
 
-  .tag-Research { background: var(--tag-research); color: var(--tag-research-text); }
-  .tag-Project { background: var(--tag-project); color: var(--tag-project-text); }
-  .tag-Course { background: var(--tag-course); color: var(--tag-course-text); }
-  .tag-Hackathon { background: var(--tag-hack); color: var(--tag-hack-text); }
-  .tag-Fun { background: #FFF8E8; color: #8A6A00; }
+  .tag-Research { background: #fde8ec; color: #852936; }
+  .tag-Project { background: #deeaf0; color: #3a6a7a; }
+  .tag-Course { background: #f0e8ee; color: #7a3a58; }
+  .tag-Hackathon { background: #fde8ec; color: #852936; }
+  .tag-Activity { background: #deeaf0; color: #3a6a7a; }
+  .tag-Fun { background: #FAF7EA; color: #7a6a3a; }
 
   .project-name {
     font-family: 'DM Serif Display', serif;
@@ -549,6 +552,152 @@
   section:nth-child(6) { animation-delay: 0.25s; }
   section:nth-child(7) { animation-delay: 0.30s; }
 
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 26, 30, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 620px;
+    max-height: 82vh;
+    overflow-y: auto;
+    transform: translateY(16px);
+    transition: transform 0.22s;
+    position: relative;
+  }
+
+  .modal-overlay.open .modal {
+    transform: translateY(0);
+  }
+
+  .modal-header {
+    padding: 28px 28px 0;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--muted);
+    line-height: 1;
+    padding: 4px;
+  }
+
+  .modal-close:hover { color: var(--fg); }
+
+  .modal-tag-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .modal-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .modal-body {
+    padding: 22px 28px 28px;
+  }
+
+  .modal-section {
+    margin-bottom: 20px;
+  }
+
+  .modal-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #852936;
+    margin-bottom: 8px;
+  }
+
+  .modal-section p, .modal-section li {
+    font-size: 13.5px;
+    color: #3A3A35;
+    line-height: 1.75;
+  }
+
+  .modal-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .modal-section li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .modal-section li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #852936;
+    text-decoration: none;
+    border-bottom: 1px solid #fde8ec;
+    padding-bottom: 1px;
+    margin-top: 12px;
+    transition: border-color 0.15s;
+  }
+
+  .modal-link:hover { border-color: #852936; }
+
+  .project-card { cursor: pointer; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 680px) {
     nav { padding: 14px 20px; }
@@ -580,15 +729,15 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div>
-      <div class="hero-photo-placeholder">photo</div>
+      <img src="image/Me.JPG" class="hero-photo" alt="Soyun Lee">
     </div>
     <div class="hero-right">
       <p class="hero-eyebrow">Undergraduate Researcher · CV</p>
       <h1 class="hero-name">Soyun<br><em>Lee.</em></h1>
       <p class="hero-bio">
-        Senior at Sookmyung Women's University, double-majoring in Computer Science and Big Data Engineering. 
-        Undergraduate researcher at AIV Lab, working at the intersection of generative models, 
-        human-object interaction, and embodied AI.
+        Hello. I am a senior at Sookmyung Women's University, double-majoring in Computer Science and Big Data Engineering. 
+        I am an undergraduate researcher at AIV Lab, working on generative models, specifically diffusion-based image editing. 
+        I aim to extend my research toward human motion understanding and embodied AI in physical and extended reality.
       </p>
       <div class="hero-interests">
         <p>Research Interests</p>
@@ -620,16 +769,16 @@
         <div class="edu-date">Mar 2022 –<br>Aug 2026<br>(Expected)</div>
         <div class="edu-body">
           <h3 class="edu-school">Sookmyung Women's University</h3>
-          <p class="edu-degree">B.S. in Computer Science &amp; B.S. in Big Data Engineering <span style="color:var(--muted)">(Double Major)</span></p>
-          <p class="edu-detail">GPA 3.66 / 4.3 &nbsp;·&nbsp; Major GPA 4.02 / 4.5</p>
+          <p class="edu-degree">B.S. in Computer Science <span style="color:var(--muted)">(Double Major)</span></p>
+          <p class="edu-detail">Double Major in Big Data Engineering (COSS))</p>
         </div>
       </div>
       <div class="edu-item">
         <div class="edu-date">Jun 2025 –<br>Aug 2025</div>
         <div class="edu-body">
           <h3 class="edu-school">Stanford University</h3>
-          <p class="edu-degree">Visiting Student — International Honors Program, Summer Session 2025</p>
-          <p class="edu-detail">Computer Organization and Systems &nbsp;·&nbsp; Client-Side Internet Technologies</p>
+          <p class="edu-degree">Exchange Student — International Honors Program, Summer Session 2025</p>
+          <p class="edu-detail">Completed courses: Computer Organization and Systems &nbsp;·&nbsp; Client-Side Internet Technologies</p>
         </div>
       </div>
     </div>
@@ -650,7 +799,7 @@
           <div class="exp-org">AIV Lab</div>
           <div class="exp-role">Undergraduate Researcher</div>
           <div class="exp-desc">AI Vision Lab, Sookmyung Women's University · Advisor: Prof. Kibeom Hong<br>
-          Focus: Diffusion model-based image editing, flow matching, attention mechanisms.</div>
+          Focus: Image Editing</div>
         </div>
       </div>
     </div>
@@ -659,23 +808,20 @@
     <div class="pub-list">
       <div class="pub-item">
         <div style="margin-bottom:8px;">
-          <span class="pub-badge">1st Author</span>
+          <span class="pub-badge">IPIU 2026</span>
         </div>
         <h3 class="pub-title">"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation"</h3>
         <div class="pub-meta">
-          <span class="pub-venue">IPIU 2026</span>
-          <span>Feb 2026</span>
+          <span>Soyun Lee, Chaewon Park, Kibeom Hong. (38th Workshop on Image Processing and Image Understanding). Jeju, Feb 2026.</span>
         </div>
       </div>
       <div class="pub-item" style="border-left-color: var(--accent2);">
         <div style="margin-bottom:8px;">
-          <span class="pub-badge review">2nd Author</span>
-          <span class="pub-badge review" style="margin-left:6px;">Under Review</span>
+          <span class="pub-badge review">Under Review (ECCV 2026)</span>
         </div>
-        <h3 class="pub-title">Enhancing multi-object image editing by taming attention leakage</h3>
+        <h3 class="pub-title">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
         <div class="pub-meta">
-          <span class="pub-venue" style="color:var(--accent2)">ECCV 2026</span>
-          <span>Under Review</span>
+          <span>Chaewon Park, Soyun Lee, Naeun Lee, Minjung Shin, Seogkyu Jeon, Kibeom Hong.</span>
         </div>
       </div>
     </div>
@@ -728,38 +874,38 @@
     <div class="project-filter">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="Research">Research</button>
-      <button class="filter-btn" data-filter="Project">Project</button>
-      <button class="filter-btn" data-filter="Course">Course</button>
-      <button class="filter-btn" data-filter="Hackathon">Hackathon</button>
+      <button class="filter-btn" data-filter="Activity">Activity</button>
+      <button class="filter-btn" data-filter="Course">Course Project</button>
+      <button class="filter-btn" data-filter="Fun">Vibe Coding</button>
     </div>
 
     <div class="projects-grid" id="projectsGrid">
 
       <div class="project-card" data-type="Research">
         <div class="project-tags"><span class="tag tag-Research">Research</span></div>
-        <h3 class="project-name">ADAM: Frequency-Aware Image Editing</h3>
+        <h3 class="project-name">"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation"</h3>
         <p class="project-desc">Inversion-free image editing via amplitude manipulation in frequency domain. Published at IPIU 2026 as first author.</p>
-        <div class="project-date">Nov 2025 – Jan 2026</div>
+        <div class="project-date">Nov 2025 – Feb 2026</div>
       </div>
 
       <div class="project-card" data-type="Research">
         <div class="project-tags"><span class="tag tag-Research">Research</span></div>
-        <h3 class="project-name">Multi-Object Image Editing (Attention Leakage)</h3>
+        <h3 class="project-name">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
         <p class="project-desc">Enhancing multi-object image editing by taming attention leakage. ECCV 2026 submission under review (2nd author).</p>
-        <div class="project-date">2025 – Present</div>
+        <div class="project-date">Oct 2025 – Mar 2026</div>
       </div>
 
-      <div class="project-card" data-type="Research">
-        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
         <h3 class="project-name">DART Analysis Agent</h3>
         <p class="project-desc">AI agent for automated Korean financial disclosure (DART) parsing and analysis.</p>
         <div class="project-date">2026</div>
       </div>
 
-      <div class="project-card" data-type="Research">
-        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
         <h3 class="project-name">Hand Tracking</h3>
-        <p class="project-desc">Hand tracking and gesture recognition research project in the computer vision domain.</p>
+        <p class="project-desc">Hand tracking and gesture recognition system built as a course project in the computer vision domain.</p>
         <div class="project-date">Mar 2026</div>
       </div>
 
@@ -770,36 +916,36 @@
         <div class="project-date">Mar – Jun 2025</div>
       </div>
 
-      <div class="project-card" data-type="Project">
-        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
         <h3 class="project-name">Tactile Paving Detection</h3>
         <p class="project-desc">Computer vision system for real-time detection of tactile paving for accessibility applications.</p>
         <div class="project-date">2026</div>
       </div>
 
-      <div class="project-card" data-type="Project">
-        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
         <h3 class="project-name">WakeupBuddy</h3>
         <p class="project-desc">EEG &amp; HCI-based drowsiness detection system. Combines biometric signals with real-time alerting.</p>
         <div class="project-date">2023</div>
       </div>
 
-      <div class="project-card" data-type="Project">
-        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
         <h3 class="project-name">Mansumugang</h3>
         <p class="project-desc">Healthcare assistant application developed as a team project.</p>
         <div class="project-date">Mar 2026</div>
       </div>
 
-      <div class="project-card" data-type="Course">
-        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
         <h3 class="project-name">Trustworthy Amazon Review Model</h3>
         <p class="project-desc">NLP pipeline for detecting fake or untrustworthy Amazon product reviews using machine learning.</p>
         <div class="project-date">2025</div>
       </div>
 
-      <div class="project-card" data-type="Course">
-        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
         <h3 class="project-name">EXAONE LLM Compression</h3>
         <p class="project-desc">Model compression experiments on LG's EXAONE large language model for efficient inference.</p>
         <div class="project-date">Mar 2026</div>
@@ -812,31 +958,31 @@
         <div class="project-date">Mar 2026</div>
       </div>
 
-      <div class="project-card" data-type="Project">
-        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
         <h3 class="project-name">SWith: Study With Me!</h3>
         <p class="project-desc">Study-together platform with social accountability features.</p>
         <div class="project-date">Mar 2026</div>
       </div>
 
-      <div class="project-card" data-type="Fun">
-        <div class="project-tags"><span class="tag tag-Fun">Fun</span></div>
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
         <h3 class="project-name">3D Packman Game</h3>
-        <p class="project-desc">3D recreation of the classic Pac-Man game built as a fun exploration project.</p>
+        <p class="project-desc">3D recreation of the classic Pac-Man game built as a course project.</p>
         <div class="project-date">Mar 2026</div>
       </div>
 
       <div class="project-card" data-type="Fun">
-        <div class="project-tags"><span class="tag tag-Fun">Fun</span></div>
+        <div class="project-tags"><span class="tag tag-Fun">Vibe Coding</span></div>
         <h3 class="project-name">Interactive Playlist</h3>
-        <p class="project-desc">Interactive music playlist web experience.</p>
+        <p class="project-desc">Interactive music playlist web experience, built just for fun.</p>
         <div class="project-date">Mar 2026</div>
       </div>
 
-      <div class="project-card" data-type="Fun">
-        <div class="project-tags"><span class="tag tag-Fun">Fun</span></div>
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
         <h3 class="project-name">What's your MBTI? — 너 T야?</h3>
-        <p class="project-desc">MBTI quiz web app built as a fun side project.</p>
+        <p class="project-desc">MBTI quiz web app built as a course project.</p>
         <div class="project-date">Mar 2026</div>
       </div>
 
@@ -847,7 +993,7 @@
   <section id="certifications">
     <div class="section-header">
       <span class="section-num">05</span>
-      <h2 class="section-title">Certifications &amp; Scores</h2>
+      <h2 class="section-title">Qualifications</h2>
     </div>
     <div class="cert-list">
       <div class="cert-item">
@@ -872,22 +1018,207 @@
   <span class="footer-note">synuolee@gmail.com &nbsp;·&nbsp; Seoul, KR</span>
 </footer>
 
-<script>
-  // Project filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-tag-row" id="modalTags"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      cards.forEach(card => {
-        const show = f === 'all' || card.dataset.type === f;
-        card.style.display = show ? '' : 'none';
-      });
+<script>
+const projects = {
+  "ADAM: Frequency-Aware Image Editing": {
+    type: "Research", date: "Nov 2025 – Jan 2026", memo: "IPIU 2026",
+    overview: "Published as first author at IPIU 2026. Proposes an inversion-free image editing framework (ADAM) that manipulates amplitude components in the frequency domain to decouple appearance from structure, enabling flexible and disentangled image editing without requiring DDIM inversion.",
+    paper: "\"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation\"",
+    tasks: [],
+    url: ""
+  },
+  "Multi-Object Image Editing (Attention Leakage)": {
+    type: "Research", date: "2025 – Present", memo: "Under Review — ECCV 2026",
+    overview: "Contributed as second author on a paper targeting multi-object image editing by addressing attention leakage across objects in diffusion model cross-attention maps. Currently under review at ECCV 2026.",
+    tasks: ["Identified and analyzed failure modes in cross-attention during multi-object editing", "Contributed to the mechanism design for suppressing attention leakage", "Assisted in paper writing and experimental validation"],
+    url: ""
+  },
+  "DART Analysis Agent": {
+    type: "Activity", date: "Aug 2025 – Feb 2026", memo: "Team Project | DACOS (Data Analysis Club of SMWU) 8th",
+    overview: "금융감독원 DART 사업보고서를 기반으로 기업의 재무 상태를 정량·정성적으로 분석하고, 근거(citation)를 포함한 초보 투자자 대상 AI 재무 리포트를 생성하는 시스템입니다. 수치 오류 없는 재무 분석, 근거 기반 설명, LLM hallucination 최소화, 확장 가능한 섹션별 병렬 LLM Agent 구조를 목표로 합니다.",
+    tasks: [],
+    url: "https://github.com/DACOS-Data-Analysis-Club-Of-Sookmyung/25-2-team1"
+  },
+  "Mansumugang": {
+    type: "Activity", date: "Jun 2024 – Mar 2025", memo: "Team Project | UMC (University Makeus Challenge) 7th",
+    overview: "Senior Health Companion Service. Developed a health assistant app targeting elderly users with limited physical activity.",
+    tasks: ["Backend (Node.js): step-count sync, online store feature, API integration", "CI/CD pipeline via GitHub Actions", "AWS RDS & EC2 deployment", "Managed a team of designers (3) and marketers (2)"],
+    url: "https://github.com/UMC-MSMG/Backend"
+  },
+  "Trustworthy Amazon Review Model": {
+    type: "Activity", date: "", memo: "DACOS",
+    overview: "DACOS 동아리 프로젝트로 진행한 Amazon 리뷰 신뢰도 분류 모델 개발 프로젝트입니다.",
+    tasks: [],
+    url: ""
+  },
+  "EXAONE LLM Compression": {
+    type: "Activity", date: "Jan 2026 – Feb 2026", memo: "Team Project | LGAimers 6th, LG AI Research",
+    overview: "Applied quantization and pruning techniques to compress LG's EXAONE on-device model for edge deployment at the LGAimers 6th Hackathon.",
+    tasks: ["Applied GPTQ 4-bit quantization on EXAONE on-device model", "Explored pruning strategies for edge deployment optimization", "Achieved a hackathon score of 0.6 / 1.0"],
+    url: ""
+  },
+  "SWith: Study With Me!": {
+    type: "Activity", date: "Feb 2024 – Jun 2024", memo: "자기주도진로설계프로젝트",
+    overview: "SWith은 교내 학생들을 위한 스터디 그룹 매칭 애플리케이션입니다. 사용자는 원하는 스터디에 대한 게시물을 올려 팀원을 모집하고, 다른 스터디에 지원할 수 있습니다. 매칭 완료 시 채팅방이 생성되어 소통하고, 스터디 종료 후 팀원 리뷰를 남길 수 있습니다.",
+    tasks: ["팀장 및 프론트엔드(Flutter) 주도 개발", "로그인 화면 & 개인정보 인증 파이프라인 구성", "메인홈 화면, 검색/필터링, 해시태그 기반 게시물 레이아웃 구성", "마이페이지, 프로필 설정 구현", "DB 구성 및 백엔드 연결", "와이어프레임, API 명세서, ERD 직접 설계"],
+    url: ""
+  },
+  "Hand Tracking": {
+    type: "Course", date: "Sep 2025 – Feb 2026", memo: "Computer Vision (Course Project)",
+    overview: "Computer Vision 수업 프로젝트로 진행한 손 추적(hand tracking) 및 제스처 인식 시스템입니다.",
+    tasks: [],
+    url: ""
+  },
+  "EasyPosie": {
+    type: "Course", date: "Mar – Jun 2025", memo: "Generative AI (Course Project)",
+    overview: "\"생성형 AI의 이해\" 수업 프로젝트. 많은 사람들이 감각적인 사진을 찍고 싶어하지만 카메라 앞에서 어색해지는 것에서 착안하여, GenAI 기반 포즈 연출 가이드 서비스를 개발했습니다. 사용자가 이미지를 업로드하면 BLIP으로 포즈를 분석하고, SAM2와 Mediapipe로 시각적 가이드, GPT-4로 텍스트 가이드를 생성합니다. Gradio를 통해 웹 배포도 시도했습니다.",
+    tasks: ["BLIP을 활용한 이미지 내 포즈 분석", "SAM2 + Mediapipe를 이용한 시각적 가이드 생성", "GPT-4를 통한 텍스트 기반 포즈 코칭", "Gradio 기반 웹 UI 배포"],
+    url: ""
+  },
+  "Tactile Paving Detection": {
+    type: "Course", date: "Oct 2025 – Dec 2025", memo: "Computer Vision (Course Project)",
+    overview: "Computer Vision 수업 프로젝트로, 시각장애인을 위한 점자블록(tactile paving)을 실시간으로 탐지하는 컴퓨터 비전 시스템을 구현했습니다.",
+    tasks: [],
+    url: ""
+  },
+  "WakeupBuddy": {
+    type: "Course", date: "Aug 2024 – Dec 2024", memo: "HCI (Capstone Course Project)",
+    overview: "뇌파(EEG)를 활용하여 학습 환경에서의 졸음을 방지하는 장치와 웹서비스 'WakeupBuddy'를 개발했습니다. Muse2 장치로 뇌파를 감지하여 데이터 전처리를 통해 졸음을 판별하고, 아두이노와 진동 모듈로 졸음을 깨우는 장치를 제작했습니다. 학습 시간 설정 및 졸음 통계 제공 웹서비스도 함께 개발했습니다.",
+    tasks: ["데이터 전처리 담당: Muse2 뇌파 데이터 수집 및 졸음 감지 알고리즘 구현", "아두이노 + 진동 모듈 연동 코드 작성", "백엔드 (Node.js) 개발 및 프론트 연동", "Figma를 활용한 UI/UX 초안 디자인"],
+    url: "https://github.com/HCI-WakeupBuddy/muse2_python"
+  },
+  "Automatic Lane Detection for Smart Car": {
+    type: "Course", date: "2025", memo: "Computer Vision (Course Project)",
+    overview: "도로 주행 영상에서 실시간으로 차선을 검출하고, 차선 변화를 감지하여 이탈 가능성을 경고하는 시스템을 구현했습니다. ROI 영역(사다리꼴)에 한해 차선을 탐지하고, Canny edge + HoughLinesP 파이프라인을 적용했습니다. 효율적 실시간 처리를 위해 39프레임 중 4프레임만 연산하는 방식을 설계했습니다.",
+    tasks: [
+      "사다리꼴 ROI 및 삼각형 마스킹 영역 설정",
+      "회색조 변환 → Gaussian Blur → Canny edge 검출 → HoughLinesP 파이프라인 구현",
+      "기울기/위치 변화 기반 실시간 차선 변경 감지",
+      "프레임 주기 최적화 (39프레임 중 4프레임 연산)로 실시간 처리 달성",
+      "Smoothing으로 급격한 차선 변화 방지"
+    ],
+    url: ""
+  },
+  "3D Packman Game": {
+    type: "Course", date: "Mar 2026", memo: "Course Project",
+    overview: "수업 프로젝트로 개발한 3D 팩맨 게임입니다.",
+    tasks: [],
+    url: ""
+  },
+  "What's your MBTI? — 너 T야?": {
+    type: "Course", date: "Mar – Jun 2025", memo: "Text Mining & NLP (Course Project)",
+    overview: "\"텍스트마이닝 및 자연어처리\" 수업 프로젝트. MBTI 관련 웹페이지·캐글 데이터와 직접 수집한 카카오톡 대화 데이터셋을 전처리하여 T/F, N/S 성향에 따른 텍스트 특성 차이를 분석했습니다. TF-IDF 분석을 통해 MBTI 성향별 유의미한 차이를 발견하고, 단어 사용 패턴 및 표현 방식을 다양한 관점에서 분석했습니다.",
+    tasks: [],
+    url: ""
+  },
+  "Interactive Playlist": {
+    type: "Fun", date: "", memo: "Vibe Coding",
+    overview: "바이브 코딩으로 만든 인터랙티브 음악 플레이리스트 웹 경험입니다.",
+    tasks: [],
+    url: ""
+  }
+};
+
+// Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cards.forEach(card => {
+      const show = f === 'all' || card.dataset.type === f;
+      card.style.display = show ? '' : 'none';
     });
   });
+});
+
+// Modal
+const overlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+
+const tagColorMap = {
+  Research: 'tag-Research',
+  Activity: 'tag-Activity',
+  Course: 'tag-Course',
+  Fun: 'tag-Fun'
+};
+
+const tagLabelMap = {
+  Research: 'Research',
+  Activity: 'Activity',
+  Course: 'Course Project',
+  Fun: 'Vibe Coding'
+};
+
+function openModal(name) {
+  const p = projects[name];
+  if (!p) return;
+
+  document.getElementById('modalTags').innerHTML =
+    `<span class="tag ${tagColorMap[p.type]}">${tagLabelMap[p.type]}</span>`;
+  document.getElementById('modalTitle').textContent = name;
+
+  let meta = '';
+  if (p.date) meta += `<span>${p.date}</span>`;
+  if (p.memo) meta += `<span>${p.memo}</span>`;
+  document.getElementById('modalMeta').innerHTML = meta;
+
+  let body = '';
+
+  if (p.overview) {
+    body += `<div class="modal-section">
+      <p class="modal-section-title">Overview</p>
+      <p>${p.overview}</p>
+    </div>`;
+  }
+
+  if (p.tasks && p.tasks.length > 0) {
+    body += `<div class="modal-section">
+      <p class="modal-section-title">Key Contributions</p>
+      <ul>${p.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
+    </div>`;
+  }
+
+  if (p.url) {
+    body += `<a href="${p.url}" target="_blank" class="modal-link">GitHub ↗</a>`;
+  }
+
+  document.getElementById('modalBody').innerHTML = body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.querySelector('.project-name').textContent.trim();
+    openModal(name);
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 
 </body>
