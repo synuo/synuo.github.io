@@ -696,6 +696,17 @@
 
   .modal-link:hover { border-color: #852936; }
 
+  .modal-link-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .modal-link-list .modal-link {
+    margin-top: 0;
+  }
+
   .project-card { cursor: pointer; }
 
   /* ── RESPONSIVE ── */
@@ -832,11 +843,17 @@
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;gap:16px;align-items:baseline;">
           <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">Mar 2026</span>
-          <span style="font-size:13.5px;">"Flow Matching for Generative Models"</span>
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:13.5px;">"Flow Matching for Generative Models"</span>
+            <a href="asset/Lab_Seminar_Flow Matching.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
+          </div>
         </div>
         <div style="display:flex;gap:16px;align-items:baseline;">
           <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">Dec 2025</span>
-          <span style="font-size:13.5px;">"Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation"</span>
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:13.5px;">"Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation"</span>
+            <a href="asset/Lab_Seminar_PNP.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1147,6 +1164,7 @@ const projects = {
   },
   "EasyPosie": {
     type: "Course", date: "Mar – Jun 2025", memo: "Generative AI (Course Project)",
+    images: ["image/EasyPosie.png"],
     overview: "A GenAI-based personalized photography guide system. Motivated by the difficulty of replicating stylish poses from reference images, the project builds a pipeline that analyzes an uploaded photo and generates both visual and text-based shooting instructions. BLIP captions the image, SAM2 extracts the subject silhouette, MediaPipe detects key joint positions, a 3×3 grid overlay is applied, and GPT-4 synthesizes the spatial hints into natural-language coaching advice. The full pipeline was deployed as a Gradio web service.",
     tasks: [
       "Image captioning with BLIP (Salesforce/blip-image-captioning-base) and GPT-4-based Korean translation",
@@ -1186,6 +1204,7 @@ const projects = {
   },
   "Automatic Lane Detection for Smart Car": {
     type: "Course", date: "Oct 2025", memo: "Computer Vision (Course Project)",
+    images: ["image/lanedetection.png"],
     overview: "Implemented a real-time lane detection and departure warning system for dashcam footage. A trapezoidal ROI focuses computation on the driving zone, and a triangular exclusion mask suppresses road center markings (arrows, diamonds) that interfere with lane detection. The detection pipeline runs Canny edge detection followed by HoughLinesP, with fitLine() fitting representative lines for left and right lanes. To maintain real-time performance, lane computation runs on only 4 of every 39 frames in normal driving; if a lane departure is detected, it switches to 10-frame continuous processing. Smoothing prevents abrupt line jumps.",
     tasks: [
       "Trapezoidal ROI and triangular exclusion mask to isolate driving lane and remove center-road markers",
@@ -1198,13 +1217,22 @@ const projects = {
   },
   "What's your MBTI? — 너 T야?": {
     type: "Course", date: "Mar – Jun 2025", memo: "Text Mining & NLP (Course Project)",
-    overview: "\"텍스트마이닝 및 자연어처리\" 수업 프로젝트. MBTI 관련 웹페이지·캐글 데이터와 직접 수집한 카카오톡 대화 데이터셋을 전처리하여 T/F, N/S 성향에 따른 텍스트 특성 차이를 분석했습니다. TF-IDF 분석을 통해 MBTI 성향별 유의미한 차이를 발견하고, 단어 사용 패턴 및 표현 방식을 다양한 관점에서 분석했습니다.",
-    tasks: [],
+    images: ["image/tmnlp.png"],
+    overview: "A text mining project investigating whether MBTI T/F (and N/S) tendencies are reflected in actual language use. Two datasets were used: (1) personality type description texts scraped from 16Personalities.com for all 16 MBTI types, and (2) real KakaoTalk conversation logs from 8 friends with known MBTI labels. The project analyzes lexical differences between types via TF-IDF, then builds a Logistic Regression classifier that combines TF-IDF text vectors with emotional expression features (laughter markers, emoji, punctuation) for T/F prediction.",
+    tasks: [
+      "Dataset 1 — 16Personalities text collection: scraped Korean personality descriptions for all 16 types, labeled each with T/F and N/S tags, removed recurring type names, and extracted nouns via KoNLPy Okt morphological analyzer",
+      "TF-IDF analysis on T/F/N/S types to identify top-50 characteristic words per group; derived custom stopword lists by filtering shared terms with near-zero score differences across types",
+      "Key findings from TF-IDF: T-type top words — '행동', '사실', '책임', '제기'; F-type — '관계', '공감', '배려', '추구'; N-type — '아이디어', '상상력', '논쟁'; S-type — '직접', '현재', '책임감'",
+      "WordCloud visualization of top TF-IDF terms per personality type",
+      "Dataset 2 — KakaoTalk conversation preprocessing: parsed [name][timestamp] format txt files, merged consecutive short messages within 5 seconds, extracted three boolean features (laughter: ㅋㅋ/ㅎㅎ, emoji, emotion_mark: !/?) per message",
+      "Text-only baseline: applied 16Personalities-derived TF-IDF vocabulary to conversation messages → all 8 users predicted as F/S, indicating word-level features alone are insufficient for casual conversation",
+      "Multi-channel classifier: combined TF-IDF sparse vectors with emotional feature columns via scipy hstack → trained Logistic Regression (accuracy 0.60, weighted F1 0.60); T-type users showed higher laughter frequency, F-type users showed more emoji and punctuation use"
+    ],
     url: ""
   },
   "Interactive Playlist": {
     type: "Fun", date: "", memo: "Vibe Coding",
-    overview: "Interactive music playlist web experience, built just for fun.",
+    overview: "Interactive music playlist. Add your favorite songs!",
     images: ["image/InteractivePlaylist.png"],
     tasks: [],
     url: "https://synuo.github.io/InteractivePlaylist/"
@@ -1273,15 +1301,21 @@ function openModal(name) {
     </div>`;
   }
 
+  if (p.url || (p.pdfs && p.pdfs.length > 0)) {
+    body += `<div class="modal-section">
+      <p class="modal-section-title">Links</p>
+      <div class="modal-link-list">
+        ${p.url ? `<a href="${p.url}" target="_blank" class="modal-link">GitHub ↗</a>` : ''}
+        ${p.pdfs && p.pdfs.length > 0 ? p.pdfs.map(pdf => `<a href="${pdf.url}" target="_blank" class="modal-link">${pdf.label}</a>`).join('') : ''}
+      </div>
+    </div>`;
+  }
+
   if (p.tasks && p.tasks.length > 0) {
     body += `<div class="modal-section">
       <p class="modal-section-title">Key Contributions</p>
       <ul>${p.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
     </div>`;
-  }
-
-  if (p.url) {
-    body += `<a href="${p.url}" target="_blank" class="modal-link">GitHub ↗</a>`;
   }
 
   document.getElementById('modalBody').innerHTML = body;
