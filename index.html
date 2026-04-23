@@ -1055,6 +1055,7 @@
 const projects = {
   "\"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation\"": {
     type: "Research", date: "Nov 2025 – Feb 2026", memo: "IPIU 2026 · 1st Author",
+    images: ["image/IPIU.png"],  
     overview: "Existing frequency-based image editing methods preserve structural layout by anchoring low-frequency components — but this inadvertently <em>locks</em> global appearance (color, lighting, style), since these are also low-frequency signals. We propose <strong>ADAM (Appearance-aware Decoupled Amplitude Manipulation)</strong>, a zero-shot, training-free framework that resolves this conflict.<br><br>ADAM introduces a <strong>three-band spectral partitioning</strong> strategy: the low-frequency band governs global appearance, a \"donut-shaped\" mid-frequency band anchors structural boundaries, and the high-frequency band handles fine texture. Within the low-frequency band, ADAM decouples amplitude from phase — the conditional amplitude injects target appearance (color, style), while the unconditional phase retains the source geometric layout. This enables disentangled control over appearance and structure without any mask or inversion.",
     tasks: [
       "Identified and formalized the core limitation of binary high-pass filtering in frequency-aware editing (appearance locking)",
@@ -1070,6 +1071,7 @@ const projects = {
   },
   "\"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing\"": {
     type: "Research", date: "Oct 2025 – Mar 2026", memo: "Under Review · ECCV 2026 · 2nd Author",
+    images: ["image/BindEdit_overview.png"],  
     overview: "Real-world images contain multiple objects requiring simultaneous editing, but existing methods fail due to <strong>attention leakage</strong>. BindEdit identifies two distinct failure modes:<br><br><strong>Edit-Token Leakage</strong> — target tokens activate across unintended spatial regions, causing identity blending across objects.<br><strong>Source Dominance Leakage</strong> — residual source token attention suppresses target signals within editable regions.<br><br>BindEdit resolves both within a <strong>single diffusion trajectory</strong> via three losses: Attention Binding Guidance (L_bind) enforces semantic binding and instance-level separation; Source Suppression Guidance (L_supp) rebalances cross-attention to suppress source dominance; Region Fidelity (L_fidelity) consolidates scattered attention into a coherent distribution. Achieves highest CLIP-image scores across all benchmarks and 61.47% overall user preference.",
     tasks: [
       "Participated in the full experimental pipeline including quantitative evaluation across LoMOE-Bench, OIR-Bench, and the extended Multi-Object benchmark",
@@ -1079,19 +1081,29 @@ const projects = {
     url: ""
   },
   "DART Analysis Agent": {
-    type: "Activity", date: "Sep 2025 – Jan 2026" , memo: "Team Project | DACOS (Data Analysis Club of SMWU) 8th",
-    overview: "금융감독원 DART 사업보고서를 기반으로 기업의 재무 상태를 정량·정성적으로 분석하고, 근거(citation)를 포함한 초보 투자자 대상 AI 재무 리포트를 생성하는 시스템입니다. 수치 오류 없는 재무 분석, 근거 기반 설명, LLM hallucination 최소화, 확장 가능한 섹션별 병렬 LLM Agent 구조를 목표로 합니다.",
-    tasks: [],
+    type: "Activity", date: "Sep 2025 – Jan 2026", memo: "Team Project | DACOS (Data Analysis Club of SMWU) 8th",
+    images: ["image/dag.png"],
+    overview: "An AI-powered financial report generation system targeting novice investors, built on Korea's official corporate disclosure platform DART (FSS). The system automatically crawls annual business reports, parses consolidated financial statements and footnotes, computes key financial metrics via a validated calculation pipeline, and generates a structured investment report with cited evidence using a section-parallel LLM Agent architecture. Core design goals: zero hallucination on numerical data, full citation traceability, and reliable QC before any LLM narration.",
+    tasks: [
+      "Financial statement parsing and normalization: automated DART report crawling, section isolation (company overview / business description / consolidated financial statements / notes), table parsing into structured row-column-cell format, and ingestion into DuckDB as SSOT",
+      "Standardized account mapping (account_map_rules) to resolve cross-company naming inconsistencies; long-format normalization (v_fin_long_mapped) for single-source-of-truth financial figures",
+      "Derived metric computation pipeline: YoY delta and growth rate calculation (v_analysis_compare), per-share figures (EPS/BPS/SPS/CFPS via v_value_augmented), and financial ratio generation (ROE, ROA, PER, PBR, PSR, DuPont) via ratio_requirements rules",
+      "QC verification layer: Python re-computation of all SQL-derived values (raw, ratio, derived, market); schema validation, range/sign checks, and PASS/FAIL/WARN status tagging per metric to block hallucination before LLM invocation",
+      "Section-parallel LLM Agent architecture: each report section (1–10) is independently generated via a shared run_section → build_ctx → prompt interface driven by inputs_spec.json; sections 1–8 run in parallel, sections 9–10 receive a bridge summary for coherence",
+      "Final report assembly and PDF export using KANANA LLM for narration, with all numerical claims grounded in pre-verified fact_metrics table"
+    ],
     url: "https://github.com/DACOS-Data-Analysis-Club-Of-Sookmyung/25-2-team1"
   },
   "Mansumugang": {
     type: "Activity", date: "Dec 2025 – Mar 2026", memo: "Team Project | UMC (University Makeus Challenge) 7th",
+    images: ["image/msmg.png"],  
     overview: "Senior Health Companion Service. Developed a health assistant app targeting elderly users with limited physical activity.",
-    tasks: ["Backend (Node.js): step-count sync, online store feature, API integration", "CI/CD pipeline via GitHub Actions", "AWS RDS & EC2 deployment", "Managed a team of designers (3) and marketers (2)"],
+    tasks: ["Backend (Node.js): step-count sync, online store feature, API integration", "CI/CD pipeline via GitHub Actions", "AWS RDS & EC2 deployment"],
     url: "https://github.com/UMC-MSMG/Backend"
   },
   "Trustworthy Amazon Review Model": {
     type: "Activity", date: "Mar – Jun 2025", memo: "Team Project | DACOS (Data Analysis Club of SMWU) 4th",
+    images: ["image/amazon_review.png"], 
     overview: "Current review systems rely on simple star-rating averages that can be easily distorted by unreliable or fake reviews. This project builds a <strong>review trustworthiness prediction system</strong> that (1) classifies each review's reliability as 0/1 using a LightGBM model, (2) generates a trust-weighted average rating per product, (3) re-ranks reviews by reliability probability, and (4) extracts TF-IDF keywords from high-trust reviews.<br><br>Two datasets were used: Amazon Sales Dataset (~20K entries) and Amazon Fine Food Reviews (~500K entries). Since the Sales Dataset lacked per-review ratings, BERT-based sentence similarity was used to split compound review strings. Trustworthiness labels were generated via a heuristic scoring system incorporating review length, sentence count, user rating variance, duplicate detection, sentiment-rating alignment (VADER), and pros/cons mentions. A calibrated LightGBM model was trained on TF-IDF vectors and text features (word diversity, empirical wording, rare word ratio), achieving a test F1 of 0.94 and 0.73 on human-labeled ground truth.",
     tasks: [
       "Exploratory data analysis: analyzed per-user review count and rating variance distributions across merged datasets to identify trustworthy reviewer patterns",
@@ -1110,8 +1122,15 @@ const projects = {
   },
   "SWith: Study With Me!": {
     type: "Activity", date: "Feb 2024 – Jun 2024", memo: "자기주도진로설계프로젝트",
-    overview: "SWith은 교내 학생들을 위한 스터디 그룹 매칭 애플리케이션입니다. 사용자는 원하는 스터디에 대한 게시물을 올려 팀원을 모집하고, 다른 스터디에 지원할 수 있습니다. 매칭 완료 시 채팅방이 생성되어 소통하고, 스터디 종료 후 팀원 리뷰를 남길 수 있습니다.",
-    tasks: ["팀장 및 프론트엔드(Flutter) 주도 개발", "로그인 화면 & 개인정보 인증 파이프라인 구성", "메인홈 화면, 검색/필터링, 해시태그 기반 게시물 레이아웃 구성", "마이페이지, 프로필 설정 구현", "DB 구성 및 백엔드 연결", "와이어프레임, API 명세서, ERD 직접 설계"],
+    overview: "SWith (Study With me) is a study group matching mobile application for students at Sookmyung Women's University. Existing platforms like Everytime and CampusPick rely on anonymity, which reduces accountability and trust. SWith addresses this by requiring Sookmyung email (@sookmyung.ac.kr) verification, providing a closed and trusted environment. Users can post study or competition recruitment listings, apply with pre-screening Q&A responses, and communicate via automatically generated chat rooms upon match completion. Team members can leave star-rated reviews after the study concludes.",
+    tasks: [
+      "Team lead and primary Flutter (frontend) developer across a 16-week development cycle",
+      "Designed and implemented the login, registration, and email verification flow (Sookmyung domain validation, duplicate checks, 6-digit verification code via SMTP)",
+      "Built the main feed, post list, category/hashtag filtering, search, and post detail screens (author and applicant views with Q&A tab)",
+      "Implemented applicant management: pre-screening question authoring, answer review, and accept/reject flow with automatic chat room creation on recruitment close",
+      "Developed the My Page section: profile editing, my recruitment/application/scrap history, study member list, and star-rating review system",
+      "Contributed to DB schema design (ER diagram), requirements specification, and full frontend–backend integration (Node.js + MySQL, hosted on AWS EC2/RDS)"
+    ],
     url: "https://canva.link/ocbx5zqrvpk9skf"
   },
   "Hand Tracking": {
@@ -1128,12 +1147,20 @@ const projects = {
   },
   "EasyPosie": {
     type: "Course", date: "Mar – Jun 2025", memo: "Generative AI (Course Project)",
-    overview: "\"생성형 AI의 이해\" 수업 프로젝트. 많은 사람들이 감각적인 사진을 찍고 싶어하지만 카메라 앞에서 어색해지는 것에서 착안하여, GenAI 기반 포즈 연출 가이드 서비스를 개발했습니다. 사용자가 이미지를 업로드하면 BLIP으로 포즈를 분석하고, SAM2와 Mediapipe로 시각적 가이드, GPT-4로 텍스트 가이드를 생성합니다. Gradio를 통해 웹 배포도 시도했습니다.",
-    tasks: ["BLIP을 활용한 이미지 내 포즈 분석", "SAM2 + Mediapipe를 이용한 시각적 가이드 생성", "GPT-4를 통한 텍스트 기반 포즈 코칭", "Gradio 기반 웹 UI 배포"],
+    overview: "A GenAI-based personalized photography guide system. Motivated by the difficulty of replicating stylish poses from reference images, the project builds a pipeline that analyzes an uploaded photo and generates both visual and text-based shooting instructions. BLIP captions the image, SAM2 extracts the subject silhouette, MediaPipe detects key joint positions, a 3×3 grid overlay is applied, and GPT-4 synthesizes the spatial hints into natural-language coaching advice. The full pipeline was deployed as a Gradio web service.",
+    tasks: [
+      "Image captioning with BLIP (Salesforce/blip-image-captioning-base) and GPT-4-based Korean translation",
+      "Subject silhouette extraction using SAM2 with center-point prompting; mask overlaid on the original image",
+      "Key joint localization (face, shoulders, elbows, wrists, knees, ankles) via MediaPipe Pose, visualized with color-coded labels",
+      "3×3 grid generation and grid-cell assignment for each joint; grid hint string passed to GPT-4 as spatial context",
+      "GPT-4 prompt engineering to generate 4–6 sentence advisory shooting guides covering pose, gaze, expression, camera angle, and atmosphere",
+      "End-to-end Gradio web deployment with before/after image view, caption output, and guide text panel"
+    ],
     url: ""
   },
   "Tactile Paving Detection": {
     type: "Course", date: "Oct – Dec 2025", memo: "Computer Vision (Course Project)",
+    images: ["image/Tactile.png"],
     overview: "Implemented a real-time tactile paving (braille block) detection system for visually impaired pedestrians. Compared YOLOv5, YOLOv8, and YOLOv11s-seg models, ultimately adopting polygon-based instance segmentation to capture the long, continuous nature of tactile blocks. Added negative samples (brick-pattern sidewalks, manhole covers) and applied HSV-based augmentation to reduce false positives in nighttime and outdoor environments. Deployed as a Gradio web service where users upload video and receive annotated output with real-time FPS and inference stats.",
     tasks: [
       "Comparative experiments across YOLOv5 / YOLOv8 / YOLOv11s-seg (evaluated by mask mAP)",
@@ -1146,6 +1173,7 @@ const projects = {
   },
   "WakeupBuddy": {
     type: "Course", date: "Sep – Dec 2024", memo: "HCI Capstone · Computer Vision (Course Project)",
+    images: ["image/WakeupBuddy.png"],
     overview: "Developed WakeupBuddy — a drowsiness prevention device and web service for students using EEG (brainwave) signals. The Muse2 headband collects raw EEG data, which is preprocessed via STFT/FFT to classify drowsiness in real time. When drowsiness is detected, an Arduino vibration module alerts the user. A companion web service visualizes learning statistics and allows users to set personalized thresholds. The vibration module was redesigned into a wristband form factor for comfort during extended use.",
     tasks: [
       "EEG data collection and preprocessing: collected brainwave data via muselsl library, removed eye-blink artifacts with ICA, applied STFT for time-frequency analysis",
@@ -1176,9 +1204,10 @@ const projects = {
   },
   "Interactive Playlist": {
     type: "Fun", date: "", memo: "Vibe Coding",
-    overview: "바이브 코딩으로 만든 인터랙티브 음악 플레이리스트 웹 경험입니다.",
+    overview: "Interactive music playlist web experience, built just for fun.",
+    images: ["image/InteractivePlaylist.png"],
     tasks: [],
-    url: ""
+    url: "https://synuo.github.io/InteractivePlaylist/"
   }
 };
 
@@ -1230,6 +1259,12 @@ function openModal(name) {
   document.getElementById('modalMeta').innerHTML = meta;
 
   let body = '';
+
+  if (p.images && p.images.length > 0) {
+    body += `<div class="modal-section">
+      ${p.images.map(src => `<img src="${src}" style="width:100%;border-radius:2px;margin-bottom:10px;border:1px solid var(--border);" />`).join('')}
+    </div>`;
+  }
 
   if (p.overview) {
     body += `<div class="modal-section">
