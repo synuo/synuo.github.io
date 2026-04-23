@@ -1,1 +1,894 @@
-Hello this is my portfolio!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soyun Lee — CV & Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F2EC;
+    --fg: #1A1A18;
+    --accent: #C8622A;
+    --accent2: #4A6FA5;
+    --muted: #7A7A72;
+    --border: #D8D4CA;
+    --card: #FFFDF8;
+    --tag-research: #FFF0E8;
+    --tag-research-text: #C8622A;
+    --tag-project: #E8EFF8;
+    --tag-project-text: #4A6FA5;
+    --tag-course: #EEF5EE;
+    --tag-course-text: #3A7A3A;
+    --tag-hack: #F5EEF8;
+    --tag-hack-text: #7A4FA5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,242,236,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--fg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--fg); }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 40px 80px;
+  }
+
+  section { margin-bottom: 80px; }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(15%);
+    box-shadow: 6px 6px 0 var(--border);
+  }
+
+  .hero-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 6px 6px 0 #c8c4ba;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .hero-right { padding-top: 8px; }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    color: #3A3A35;
+    line-height: 1.75;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+
+  .hero-interests {
+    margin-bottom: 32px;
+  }
+
+  .hero-interests p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .interest-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--fg);
+    background: var(--card);
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: var(--fg);
+    border: 1px solid var(--fg);
+    padding: 7px 14px;
+    border-radius: 2px;
+    transition: background 0.18s, color 0.18s;
+  }
+
+  .hero-link:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .hero-link.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .hero-link.primary:hover {
+    background: #a84e20;
+    border-color: #a84e20;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 36px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-list { display: flex; flex-direction: column; gap: 28px; }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+
+  .edu-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 4px;
+    line-height: 1.5;
+  }
+
+  .edu-body {}
+
+  .edu-school {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  .edu-degree {
+    font-size: 13.5px;
+    color: #3A3A35;
+    margin-bottom: 4px;
+  }
+
+  .edu-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .pub-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 20px 22px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .pub-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .pub-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .pub-venue {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .pub-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--tag-research);
+    color: var(--tag-research-text);
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  .pub-badge.review {
+    background: var(--tag-project);
+    color: var(--tag-project-text);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; gap: 32px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 4px;
+    line-height: 1.5;
+  }
+
+  .exp-org {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .exp-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .exp-desc {
+    font-size: 13.5px;
+    color: #3A3A35;
+    line-height: 1.75;
+  }
+
+  .exp-desc ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-desc li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .exp-desc li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* ── PROJECTS GRID ── */
+  .project-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .filter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: transparent;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.18s;
+    letter-spacing: 0.04em;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 22px 22px 18px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    box-shadow: 4px 4px 0 var(--border);
+    transform: translate(-2px, -2px);
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+
+  .tag-Research { background: var(--tag-research); color: var(--tag-research-text); }
+  .tag-Project { background: var(--tag-project); color: var(--tag-project-text); }
+  .tag-Course { background: var(--tag-course); color: var(--tag-course-text); }
+  .tag-Hackathon { background: var(--tag-hack); color: var(--tag-hack-text); }
+  .tag-Fun { background: #FFF8E8; color: #8A6A00; }
+
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .project-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .project-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--border);
+    color: #AAA8A0;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .cert-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 18px 18px 16px;
+  }
+
+  .cert-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .cert-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { animation: fadeUp 0.7s ease both; }
+  section { animation: fadeUp 0.7s ease both; }
+  section:nth-child(2) { animation-delay: 0.05s; }
+  section:nth-child(3) { animation-delay: 0.10s; }
+  section:nth-child(4) { animation-delay: 0.15s; }
+  section:nth-child(5) { animation-delay: 0.20s; }
+  section:nth-child(6) { animation-delay: 0.25s; }
+  section:nth-child(7) { animation-delay: 0.30s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    main { padding: 100px 20px 60px; }
+    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .hero-photo-placeholder { aspect-ratio: 4/3; }
+    .edu-item, .exp-item { grid-template-columns: 1fr; gap: 6px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cert-list { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Soyun Lee</a>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div>
+      <div class="hero-photo-placeholder">photo</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-eyebrow">Undergraduate Researcher · CV</p>
+      <h1 class="hero-name">Soyun<br><em>Lee.</em></h1>
+      <p class="hero-bio">
+        Senior at Sookmyung Women's University, double-majoring in Computer Science and Big Data Engineering. 
+        Undergraduate researcher at AIV Lab, working at the intersection of generative models, 
+        human-object interaction, and embodied AI.
+      </p>
+      <div class="hero-interests">
+        <p>Research Interests</p>
+        <div class="interest-tags">
+          <span class="interest-tag">Generative Models</span>
+          <span class="interest-tag">Image / Video</span>
+          <span class="interest-tag">Human–Object Interaction</span>
+          <span class="interest-tag">Embodied AI</span>
+          <span class="interest-tag">Spatial Computing</span>
+        </div>
+      </div>
+      <div class="hero-links">
+        <a href="https://github.com/synuo" class="hero-link primary" target="_blank">GitHub ↗</a>
+        <a href="https://linkedin.com/in/synuolee" class="hero-link" target="_blank">LinkedIn ↗</a>
+        <a href="https://synuo.tistory.com" class="hero-link" target="_blank">Blog ↗</a>
+        <a href="mailto:synuolee@gmail.com" class="hero-link">Email ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-date">Mar 2022 –<br>Aug 2026<br>(Expected)</div>
+        <div class="edu-body">
+          <h3 class="edu-school">Sookmyung Women's University</h3>
+          <p class="edu-degree">B.S. in Computer Science &amp; B.S. in Big Data Engineering <span style="color:var(--muted)">(Double Major)</span></p>
+          <p class="edu-detail">GPA 3.66 / 4.3 &nbsp;·&nbsp; Major GPA 4.02 / 4.5</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-date">Jun 2025 –<br>Aug 2025</div>
+        <div class="edu-body">
+          <h3 class="edu-school">Stanford University</h3>
+          <p class="edu-degree">Visiting Student — International Honors Program, Summer Session 2025</p>
+          <p class="edu-detail">Computer Organization and Systems &nbsp;·&nbsp; Client-Side Internet Technologies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Research &amp; Publications</h2>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Lab Affiliation</p>
+      <div class="exp-item" style="margin-bottom:0;">
+        <div class="exp-date">Sep 2025 –<br>Present</div>
+        <div>
+          <div class="exp-org">AIV Lab</div>
+          <div class="exp-role">Undergraduate Researcher</div>
+          <div class="exp-desc">AI Vision Lab, Sookmyung Women's University · Advisor: Prof. Kibeom Hong<br>
+          Focus: Diffusion model-based image editing, flow matching, attention mechanisms.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Publications</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div style="margin-bottom:8px;">
+          <span class="pub-badge">1st Author</span>
+        </div>
+        <h3 class="pub-title">"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation"</h3>
+        <div class="pub-meta">
+          <span class="pub-venue">IPIU 2026</span>
+          <span>Feb 2026</span>
+        </div>
+      </div>
+      <div class="pub-item" style="border-left-color: var(--accent2);">
+        <div style="margin-bottom:8px;">
+          <span class="pub-badge review">2nd Author</span>
+          <span class="pub-badge review" style="margin-left:6px;">Under Review</span>
+        </div>
+        <h3 class="pub-title">Enhancing multi-object image editing by taming attention leakage</h3>
+        <div class="pub-meta">
+          <span class="pub-venue" style="color:var(--accent2)">ECCV 2026</span>
+          <span>Under Review</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;">
+      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Lab Seminars</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:16px;align-items:baseline;">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">Mar 2026</span>
+          <span style="font-size:13.5px;">"Flow Matching for Generative Models"</span>
+        </div>
+        <div style="display:flex;gap:16px;align-items:baseline;">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">Dec 2025</span>
+          <span style="font-size:13.5px;">"Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation"</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">Mar 2025 –<br>Jun 2025</div>
+        <div>
+          <div class="exp-org">Bagstrap (가방끈)</div>
+          <div class="exp-role">Data Engineering Intern</div>
+          <div class="exp-desc">
+            <ul>
+              <li>Engineered modular web crawling pipelines using Python (BeautifulSoup, Selenium) to extract and structure academic data from university lab websites and researcher directories.</li>
+              <li>Implemented scalable data collection systems for Google Scholar and academic paper metadata, organizing data into hierarchical formats for downstream analysis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="project-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Research">Research</button>
+      <button class="filter-btn" data-filter="Project">Project</button>
+      <button class="filter-btn" data-filter="Course">Course</button>
+      <button class="filter-btn" data-filter="Hackathon">Hackathon</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <div class="project-card" data-type="Research">
+        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+        <h3 class="project-name">ADAM: Frequency-Aware Image Editing</h3>
+        <p class="project-desc">Inversion-free image editing via amplitude manipulation in frequency domain. Published at IPIU 2026 as first author.</p>
+        <div class="project-date">Nov 2025 – Jan 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Research">
+        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+        <h3 class="project-name">Multi-Object Image Editing (Attention Leakage)</h3>
+        <p class="project-desc">Enhancing multi-object image editing by taming attention leakage. ECCV 2026 submission under review (2nd author).</p>
+        <div class="project-date">2025 – Present</div>
+      </div>
+
+      <div class="project-card" data-type="Research">
+        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+        <h3 class="project-name">DART Analysis Agent</h3>
+        <p class="project-desc">AI agent for automated Korean financial disclosure (DART) parsing and analysis.</p>
+        <div class="project-date">2026</div>
+      </div>
+
+      <div class="project-card" data-type="Research">
+        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+        <h3 class="project-name">Hand Tracking</h3>
+        <p class="project-desc">Hand tracking and gesture recognition research project in the computer vision domain.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">EasyPosie</h3>
+        <p class="project-desc">GenAI-based pose direction guide. User uploads a photo; BLIP analyzes pose, SAM2 &amp; Mediapipe generate visual guidance, GPT-4 provides text coaching. Deployed via Gradio.</p>
+        <div class="project-date">Mar – Jun 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Project">
+        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+        <h3 class="project-name">Tactile Paving Detection</h3>
+        <p class="project-desc">Computer vision system for real-time detection of tactile paving for accessibility applications.</p>
+        <div class="project-date">2026</div>
+      </div>
+
+      <div class="project-card" data-type="Project">
+        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+        <h3 class="project-name">WakeupBuddy</h3>
+        <p class="project-desc">EEG &amp; HCI-based drowsiness detection system. Combines biometric signals with real-time alerting.</p>
+        <div class="project-date">2023</div>
+      </div>
+
+      <div class="project-card" data-type="Project">
+        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+        <h3 class="project-name">Mansumugang</h3>
+        <p class="project-desc">Healthcare assistant application developed as a team project.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">Trustworthy Amazon Review Model</h3>
+        <p class="project-desc">NLP pipeline for detecting fake or untrustworthy Amazon product reviews using machine learning.</p>
+        <div class="project-date">2025</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">EXAONE LLM Compression</h3>
+        <p class="project-desc">Model compression experiments on LG's EXAONE large language model for efficient inference.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">Automatic Lane Detection for Smart Car</h3>
+        <p class="project-desc">Computer vision pipeline for real-time lane detection in autonomous driving scenarios.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Project">
+        <div class="project-tags"><span class="tag tag-Project">Project</span></div>
+        <h3 class="project-name">SWith: Study With Me!</h3>
+        <p class="project-desc">Study-together platform with social accountability features.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Fun">
+        <div class="project-tags"><span class="tag tag-Fun">Fun</span></div>
+        <h3 class="project-name">3D Packman Game</h3>
+        <p class="project-desc">3D recreation of the classic Pac-Man game built as a fun exploration project.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Fun">
+        <div class="project-tags"><span class="tag tag-Fun">Fun</span></div>
+        <h3 class="project-name">Interactive Playlist</h3>
+        <p class="project-desc">Interactive music playlist web experience.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Fun">
+        <div class="project-tags"><span class="tag tag-Fun">Fun</span></div>
+        <h3 class="project-name">What's your MBTI? — 너 T야?</h3>
+        <p class="project-desc">MBTI quiz web app built as a fun side project.</p>
+        <div class="project-date">Mar 2026</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Certifications &amp; Scores</h2>
+    </div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <h3 class="cert-name">SQLD</h3>
+        <p class="cert-detail">SQL Developer<br>한국데이터검증원 · 2023</p>
+      </div>
+      <div class="cert-item">
+        <h3 class="cert-name">TOEFL iBT</h3>
+        <p class="cert-detail">Score: 102<br>Sep 2024</p>
+      </div>
+      <div class="cert-item">
+        <h3 class="cert-name">TOEIC</h3>
+        <p class="cert-detail">Score: 910<br>Feb 2022</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-name">Soyun Lee</span>
+  <span class="footer-note">synuolee@gmail.com &nbsp;·&nbsp; Seoul, KR</span>
+</footer>
+
+<script>
+  // Project filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card => {
+        const show = f === 'all' || card.dataset.type === f;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
