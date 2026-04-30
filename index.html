@@ -833,7 +833,7 @@
       </div>
       <div class="pub-item" style="border-left-color: var(--accent2);">
         <div style="margin-bottom:8px;">
-          <span class="pub-badge review">Under Review (ECCV 2026)</span>
+          <span class="pub-badge review">Under Review</span>
         </div>
         <h3 class="pub-title">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
         <div class="pub-meta">
@@ -939,7 +939,7 @@
       <div class="project-card" data-type="Research">
         <div class="project-tags"><span class="tag tag-Research">Research</span></div>
         <h3 class="project-name">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
-        <p class="project-desc">Enhancing multi-object image editing by enforcing attention-level constraints. ECCV 2026 submission under review (2nd author).</p>
+        <p class="project-desc">Enhancing multi-object image editing by enforcing attention-level constraints. submission under review (2nd author).</p>
         <div class="project-date">Oct 2025 – Mar 2026</div>
       </div>
 
@@ -1091,7 +1091,7 @@ const projects = {
     url: "https://github.com/synuo/AIVISIONLAB/tree/main/ADAM"
   },
   "\"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing\"": {
-    type: "Research", date: "Oct 2025 – Mar 2026", memo: "Under Review · ECCV 2026 · 2nd Author",
+    type: "Research", date: "Oct 2025 – Mar 2026", memo: "Under Review · 2nd Author",
     images: ["image/BindEdit_overview.png"],  
     overview: "Real-world images contain multiple objects requiring simultaneous editing, but existing methods fail due to <strong>attention leakage</strong>. BindEdit identifies two distinct failure modes:<br><br><strong>Edit-Token Leakage</strong> — target tokens activate across unintended spatial regions, causing identity blending across objects.<br><strong>Source Dominance Leakage</strong> — residual source token attention suppresses target signals within editable regions.<br><br>BindEdit resolves both within a <strong>single diffusion trajectory</strong> via three losses: Attention Binding Guidance (L_bind) enforces semantic binding and instance-level separation; Source Suppression Guidance (L_supp) rebalances cross-attention to suppress source dominance; Region Fidelity (L_fidelity) consolidates scattered attention into a coherent distribution. Achieves highest CLIP-image scores across all benchmarks and 61.47% overall user preference.",
     tasks: [
