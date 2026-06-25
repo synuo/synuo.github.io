@@ -833,9 +833,9 @@
       </div>
       <div class="pub-item" style="border-left-color: var(--accent2);">
         <div style="margin-bottom:8px;">
-          <span class="pub-badge review">Under Review</span>
+          <span class="pub-badge review">Preprint</span>
         </div>
-        <h3 class="pub-title">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
+        <h3 class="pub-title"><a href="https://arxiv.org/pdf/2606.18906" target="_blank" rel="noopener noreferrer">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</a></h3>
         <div class="pub-meta">
           <span>Chaewon Park, Soyun Lee, Naeun Lee, Minjung Shin, Seogkyu Jeon, Kibeom Hong.</span>
         </div>
@@ -945,8 +945,8 @@
 
       <div class="project-card" data-type="Research">
         <div class="project-tags"><span class="tag tag-Research">Research</span></div>
-        <h3 class="project-name">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
-        <p class="project-desc">Enhancing multi-object image editing by enforcing attention-level constraints. submission under review (2nd author).</p>
+        <h3 class="project-name"><a href="https://arxiv.org/pdf/2606.18906" target="_blank" rel="noopener noreferrer">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</a></h3>
+        <p class="project-desc">Enhancing multi-object image editing by enforcing attention-level constraints. Preprint (2nd author).</p>
         <div class="project-date">Oct 2025 – Mar 2026</div>
       </div>
 
@@ -1098,11 +1098,11 @@ const projects = {
     url: "https://github.com/synuo/AIVISIONLAB/tree/main/ADAM"
   },
   "\"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing\"": {
-    type: "Research", date: "Oct 2025 – Mar 2026", memo: "Under Review · 2nd Author",
+    type: "Research", date: "Oct 2025 – Mar 2026", memo: "Preprint · 2nd Author",
     images: ["image/BindEdit_overview.png"],  
     overview: "Real-world images contain multiple objects requiring simultaneous editing, but existing methods fail due to <strong>attention leakage</strong>. BindEdit identifies two distinct failure modes:<br><br><strong>Edit-Token Leakage</strong> — target tokens activate across unintended spatial regions, causing identity blending across objects.<br><strong>Source Dominance Leakage</strong> — residual source token attention suppresses target signals within editable regions.<br><br>BindEdit resolves both within a <strong>single diffusion trajectory</strong> via three losses: Attention Binding Guidance (L_bind) enforces semantic binding and instance-level separation; Source Suppression Guidance (L_supp) rebalances cross-attention to suppress source dominance; Region Fidelity (L_fidelity) consolidates scattered attention into a coherent distribution. Achieves highest CLIP-image scores across all benchmarks and 61.47% overall user preference.",
     tasks: [
-      "Participated in the full experimental pipeline including quantitative evaluation across LoMOE-Bench, OIR-Bench, and the extended Multi-Object benchmark",
+      "Participated in experimental pipeline including quantitative evaluation and extended Multi-Object benchmark",
       "Contributed to constructing Multi-Bench, a comprehensive multi-object editing benchmark comprising 238 images uniformly covering 1–5+ simultaneous edit targets across diverse object categories and spatial layouts"
     ],
     pdfs: [],
