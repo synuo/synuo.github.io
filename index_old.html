@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soyun Lee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --fg: #2A1A1E;
+    --accent: #852936;
+    --accent2: #C5D9E2;
+    --muted: #8A7A7E;
+    --border: #E8DEDE;
+    --card: #FAF7EA;
+    --tag-research: #fde8ec;
+    --tag-research-text: #852936;
+    --tag-project: #deeaf0;
+    --tag-project-text: #3a6a7a;
+    --tag-course: #f0eaf5;
+    --tag-course-text: #6a4a7a;
+    --tag-hack: #fce8f0;
+    --tag-hack-text: #852936;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--fg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--fg); }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 40px 80px;
+  }
+
+  section { margin-bottom: 80px; }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(15%);
+    box-shadow: 6px 6px 0 var(--border);
+  }
+
+  .hero-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 6px 6px 0 #c8c4ba;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .hero-right { padding-top: 8px; }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #852936;
+    margin-bottom: 12px;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: #852936;
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    color: #3A3A35;
+    line-height: 1.75;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+
+  .hero-interests {
+    margin-bottom: 32px;
+  }
+
+  .hero-interests p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .interest-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid #E1AEBC;
+    border-radius: 100px;
+    color: #852936;
+    background: #fde8ec;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: #2A1A1E;
+    border: 1px solid #C5D9E2;
+    padding: 7px 14px;
+    border-radius: 2px;
+    background: #F0F6F9;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+  }
+
+  .hero-link:hover {
+    background: #C5D9E2;
+    border-color: #9abfce;
+    color: #2A1A1E;
+  }
+
+  .hero-link.primary {
+    background: #852936;
+    border-color: #852936;
+    color: #fff;
+  }
+
+  .hero-link.primary:hover {
+    background: #6a1e2a;
+    border-color: #6a1e2a;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 36px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #852936;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-list { display: flex; flex-direction: column; gap: 28px; }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+
+  .edu-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 4px;
+    line-height: 1.5;
+  }
+
+  .edu-body {}
+
+  .edu-school {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  .edu-degree {
+    font-size: 13.5px;
+    color: #3A3A35;
+    margin-bottom: 4px;
+  }
+
+  .edu-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .pub-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid #852936;
+    padding: 20px 22px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .pub-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .pub-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .pub-venue {
+    color: #852936;
+    font-weight: 500;
+  }
+
+  .pub-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    background: #fde8ec;
+    color: #852936;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  .pub-badge.review {
+    background: #deeaf0;
+    color: #3a6a7a;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; gap: 32px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 4px;
+    line-height: 1.5;
+  }
+
+  .exp-org {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .exp-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #852936;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .exp-desc {
+    font-size: 13.5px;
+    color: #3A3A35;
+    line-height: 1.75;
+  }
+
+  .exp-desc ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-desc li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .exp-desc li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* ── PROJECTS GRID ── */
+  .project-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .filter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: transparent;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.18s;
+    letter-spacing: 0.04em;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: #852936;
+    color: #fff;
+    border-color: #852936;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 22px 22px 18px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    box-shadow: 4px 4px 0 var(--border);
+    transform: translate(-2px, -2px);
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+
+  .tag-Research { background: #fde8ec; color: #852936; }
+  .tag-Project { background: #deeaf0; color: #3a6a7a; }
+  .tag-Course { background: #f0e8ee; color: #7a3a58; }
+  .tag-Hackathon { background: #fde8ec; color: #852936; }
+  .tag-Activity { background: #deeaf0; color: #3a6a7a; }
+  .tag-Fun { background: #FAF7EA; color: #7a6a3a; }
+
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .project-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .project-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--border);
+    color: #AAA8A0;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .cert-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 18px 18px 16px;
+  }
+
+  .cert-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .cert-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { animation: fadeUp 0.7s ease both; }
+  section { animation: fadeUp 0.7s ease both; }
+  section:nth-child(2) { animation-delay: 0.05s; }
+  section:nth-child(3) { animation-delay: 0.10s; }
+  section:nth-child(4) { animation-delay: 0.15s; }
+  section:nth-child(5) { animation-delay: 0.20s; }
+  section:nth-child(6) { animation-delay: 0.25s; }
+  section:nth-child(7) { animation-delay: 0.30s; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 26, 30, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 620px;
+    max-height: 82vh;
+    overflow-y: auto;
+    transform: translateY(16px);
+    transition: transform 0.22s;
+    position: relative;
+  }
+
+  .modal-overlay.open .modal {
+    transform: translateY(0);
+  }
+
+  .modal-header {
+    padding: 28px 28px 0;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--muted);
+    line-height: 1;
+    padding: 4px;
+  }
+
+  .modal-close:hover { color: var(--fg); }
+
+  .modal-tag-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .modal-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .modal-body {
+    padding: 22px 28px 28px;
+  }
+
+  .modal-section {
+    margin-bottom: 20px;
+  }
+
+  .modal-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #852936;
+    margin-bottom: 8px;
+  }
+
+  .modal-section p, .modal-section li {
+    font-size: 13.5px;
+    color: #3A3A35;
+    line-height: 1.75;
+  }
+
+  .modal-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .modal-section li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .modal-section li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #852936;
+    text-decoration: none;
+    border-bottom: 1px solid #fde8ec;
+    padding-bottom: 1px;
+    margin-top: 12px;
+    transition: border-color 0.15s;
+  }
+
+  .modal-link:hover { border-color: #852936; }
+
+  .modal-link-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .modal-link-list .modal-link {
+    margin-top: 0;
+  }
+
+  .project-card { cursor: pointer; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    main { padding: 100px 20px 60px; }
+    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .hero-photo-placeholder { aspect-ratio: 4/3; }
+    .edu-item, .exp-item { grid-template-columns: 1fr; gap: 6px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cert-list { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Soyun Lee</a>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div>
+      <img src="image/Me.JPG" class="hero-photo" alt="Soyun Lee">
+    </div>
+    <div class="hero-right">
+      <p class="hero-eyebrow">CS Student</p>
+      <h1 class="hero-name">Soyun<br><em>Lee.</em></h1>
+      <p class="hero-bio">
+        Hello. I am a senior at Sookmyung Women's University, majoring in Computer Science and Big Data Engineering. 
+        I am an undergraduate researcher at AIV Lab, working on generative models, specifically diffusion-based image editing. 
+        I aim to extend my research toward human motion understanding and embodied AI in physical and extended reality.
+      </p>
+      <div class="hero-interests">
+        <p>Research Interests</p>
+        <div class="interest-tags">
+          <span class="interest-tag">Generative Models</span>
+          <span class="interest-tag">Image Editing</span>
+          <span class="interest-tag">Embodied AI</span>
+          <span class="interest-tag">4D Motion & Scene Interaction</span>
+          <span class="interest-tag">Hand–Object Interaction</span>
+          <span class="interest-tag">Extended Reality</span>
+        </div>
+      </div>
+      <div class="hero-links">
+        <a href="https://github.com/synuo" class="hero-link" target="_blank">GitHub ↗</a>
+        <a href="https://linkedin.com/in/synuolee" class="hero-link" target="_blank">LinkedIn ↗</a>
+        <a href="https://synuo.tistory.com" class="hero-link" target="_blank">Blog ↗</a>
+        <a href="mailto:synuolee@gmail.com" class="hero-link" target="_blank">synuolee@gmail.com ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-list">
+       <div class="edu-item">
+        <div class="edu-date">Sep 2026 </div>
+        <div class="edu-body">
+          <h3 class="edu-school">KAIST (Korea Advanced Institute of Science and Technology)</h3>
+          <p class="edu-degree"> Prospective M.S. student in Graduate School of Metaverse</p>
+          <p class="edu-detail"> Research Interests: Generative Models, Extended Reality</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-date">Mar 2022 –<br>Aug 2026<br>(Expected)</div>
+        <div class="edu-body">
+          <h3 class="edu-school">Sookmyung Women's University</h3>
+          <p class="edu-degree">B.S. in Computer Science</p>
+          <p class="edu-detail">B.S. in Big Data Engineering <span style="color:var(--muted)">(Double Major(COSS))</span></p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-date">Jun 2025 –<br>Aug 2025</div>
+        <div class="edu-body">
+          <h3 class="edu-school">Stanford University</h3>
+          <p class="edu-degree">Exchange Student — International Honors Program, Summer Session 2025</p>
+          <p class="edu-detail">Completed courses: Computer Organization and Systems &nbsp;·&nbsp; Client-Side Internet Technologies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Research &amp; Publications</h2>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Lab Affiliation</p>
+      <div class="exp-item" style="margin-bottom:0;">
+        <div class="exp-date">Sep 2025 –<br>Present</div>
+        <div>
+          <div class="exp-org">AIV Lab</div>
+          <div class="exp-role">Undergraduate Researcher</div>
+          <div class="exp-desc">AI Vision Lab, Sookmyung Women's University · Advised by <a href="https://sites.google.com/sookmyung.ac.kr/aiv-lab-smwu/" target="_blank" rel="noopener noreferrer" style="color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">Prof. Kibeom Hong</a><br>
+          Focus: Image Editing</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Publications</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div style="margin-bottom:8px;">
+          <span class="pub-badge">IPIU 2026</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <h3 class="pub-title" style="margin:0;">"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation"</h3>
+          <a href="asset/IPIU_2026_ADAM.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
+          <a href="asset/IPIU_Poster.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">Poster ↗</a>
+        </div>
+        <div class="pub-meta">
+          <span>Soyun Lee, Chaewon Park, Kibeom Hong. (38th Workshop on Image Processing and Image Understanding). Jeju, Feb 2026.</span>
+        </div>
+      </div>
+      <div class="pub-item" style="border-left-color: var(--accent2);">
+        <div style="margin-bottom:8px;">
+          <span class="pub-badge review">Preprint</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <h3 class="pub-title" style="margin:0;">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
+          <a href="https://arxiv.org/pdf/2606.18906" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">arXiv ↗</a>
+        </div>
+        <div class="pub-meta">
+          <span>Chaewon Park, Soyun Lee, Naeun Lee, Minjung Shin, Seogkyu Jeon, Kibeom Hong.</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;">
+      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Lab Seminars</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:16px;align-items:baseline;">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">May 2026</span>
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:13.5px;">"FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models"</span>
+            <a href="asset/Lab_Seminar_FlowEdit.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:baseline;">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">Mar 2026</span>
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:13.5px;">"Flow Matching for Generative Models"</span>
+            <a href="asset/Lab_Seminar_Flow Matching.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:baseline;">
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:80px;">Dec 2025</span>
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:13.5px;">"Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation"</span>
+            <a href="asset/Lab_Seminar_PNP.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">Mar 2025 –<br>Jun 2025</div>
+        <div>
+          <div class="exp-org">Bagstrap (가방끈)</div>
+          <div class="exp-role">Data Engineering Intern</div>
+          <div class="exp-desc">
+            <ul>
+              <li>Engineered modular web crawling pipelines using Python (BeautifulSoup, Selenium) to extract and structure academic data from university lab websites and researcher directories.</li>
+              <li>Implemented scalable data collection systems for Google Scholar and academic paper metadata, organizing data into hierarchical formats for downstream analysis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="exp-item">
+      <div class="exp-date">Mar 2025 – Feb 2026</div>
+      <div>
+        <div class="exp-org">DACOS</div>
+        <div class="exp-role">Member · Big Data Analysis Club</div>
+        <div class="exp-desc">Data Analysis Club of Sookmyung Women's University. </div>
+      </div>
+    </div>
+    
+    <div class="exp-item">
+      <div class="exp-date">Sep 2024 – Feb 2025</div>
+      <div>
+        <div class="exp-org">UMC</div>
+        <div class="exp-role">Member · Node.js Track · 7th</div>
+        <div class="exp-desc">University Makeus Challenge — IT club, Node.js backend track. </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Mar 2023 – Jan 2025</div>
+      <div>
+        <div class="exp-org">Algos</div>
+        <div class="exp-role">Member · Algorithm Club</div>
+        <div class="exp-desc">Algorithm study club at Sookmyung Women's University. </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="project-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Research">Research</button>
+      <button class="filter-btn" data-filter="Activity">Activity</button>
+      <button class="filter-btn" data-filter="Course">Course Project</button>
+      <button class="filter-btn" data-filter="Fun">Vibe Coding</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <div class="project-card" data-type="Research">
+        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+        <h3 class="project-name">"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation"</h3>
+        <p class="project-desc">Appearance-aware image editing via amplitude manipulation in frequency domain. Published at IPIU 2026 as first author.</p>
+        <div class="project-date">Nov 2025 – Feb 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Research">
+        <div class="project-tags"><span class="tag tag-Research">Research</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+          <h3 class="project-name" style="margin:0;">"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing"</h3>
+          <a href="https://arxiv.org/pdf/2606.18906" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">arXiv ↗</a>
+        </div>
+        <p class="project-desc">Enhancing multi-object image editing by enforcing attention-level constraints. Preprint (2nd author).</p>
+        <div class="project-date">Oct 2025 – Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
+        <h3 class="project-name">DART Analysis Agent</h3>
+        <p class="project-desc">AI agent for automated Korean financial disclosure (DART) parsing and analysis.</p>
+        <div class="project-date">Sep 2025 - Jan 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">EasyPosie</h3>
+        <p class="project-desc">GenAI-based pose direction guide. User uploads a photo; BLIP analyzes pose, SAM2 &amp; Mediapipe generate visual guidance, GPT-4 provides text coaching. Deployed via Gradio.</p>
+        <div class="project-date">Mar – Jun 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">Tactile Paving Detection</h3>
+        <p class="project-desc">Real-time detection of tactile paving for accessibility applications.</p>
+        <div class="project-date">Oct - Dec 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">WakeupBuddy</h3>
+        <p class="project-desc">EEG &amp; HCI-based drowsiness detection system. Combines biometric signals with real-time alerting.</p>
+        <div class="project-date">Sep - Dec 2024</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">Hand Tracking</h3>
+        <p class="project-desc">Hand tracking and gesture recognition system built as a course project in the computer vision domain.</p>
+        <div class="project-date">Sep 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
+        <h3 class="project-name">Mansumugang</h3>
+        <p class="project-desc">Healthcare assistant application developed as a team project.</p>
+        <div class="project-date">Dec 2025 - Mar 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
+        <h3 class="project-name">SWith: Study With Me!</h3>
+        <p class="project-desc">Study-together platform with social accountability features.</p>
+        <div class="project-date">Feb - Jun 2024</div>
+      </div>
+
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
+        <h3 class="project-name">Trustworthy Amazon Review Model</h3>
+        <p class="project-desc">Model for detecting fake or untrustworthy Amazon product reviews using machine learning.</p>
+        <div class="project-date">Mar - Jun 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Activity">
+        <div class="project-tags"><span class="tag tag-Activity">Activity</span></div>
+        <h3 class="project-name">EXAONE LLM Compression</h3>
+        <p class="project-desc">Model compression experiments on LG's EXAONE large language model for efficient inference.</p>
+        <div class="project-date">Feb 2026</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">Automatic Lane Detection for Smart Car</h3>
+        <p class="project-desc">Computer vision pipeline for real-time lane detection in autonomous driving scenarios.</p>
+        <div class="project-date">Oct 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Course">
+        <div class="project-tags"><span class="tag tag-Course">Course Project</span></div>
+        <h3 class="project-name">What's your MBTI? — 너 T야?</h3>
+        <p class="project-desc">Speculation on MBTI-T/F compatibility and modeled classification.</p>
+        <div class="project-date">Mar - Jun 2025</div>
+      </div>
+
+      <div class="project-card" data-type="Fun">
+        <div class="project-tags"><span class="tag tag-Fun">Vibe Coding</span></div>
+        <h3 class="project-name">Interactive Playlist</h3>
+        <p class="project-desc">Interactive music playlist web experience, built just for fun.</p>
+        <div class="project-date">2026</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Qualifications</h2>
+    </div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <h3 class="cert-name">SQLD</h3>
+        <p class="cert-detail">SQL Developer<br>한국데이터검증원 · 2025</p>
+      </div>
+      <div class="cert-item">
+        <h3 class="cert-name">TOEFL iBT</h3>
+        <p class="cert-detail">Score: 102<br>Sep 2024</p>
+      </div>
+      <div class="cert-item">
+        <h3 class="cert-name">TOEIC</h3>
+        <p class="cert-detail">Score: 910<br>Feb 2022</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-name">Soyun Lee</span>
+  <span class="footer-note">synuolee@gmail.com &nbsp;·&nbsp; Seoul, KR</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-tag-row" id="modalTags"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const projects = {
+  "\"Freeing Appearance in Frequency-Aware Image Editing with Amplitude Manipulation\"": {
+    type: "Research", date: "Nov 2025 – Feb 2026", memo: "IPIU 2026 · 1st Author",
+    images: ["image/IPIU.png"],  
+    overview: "Existing frequency-based image editing methods preserve structural layout by anchoring low-frequency components — but this inadvertently <em>locks</em> global appearance (color, lighting, style), since these are also low-frequency signals. We propose <strong>ADAM (Appearance-aware Decoupled Amplitude Manipulation)</strong>, a zero-shot, training-free framework that resolves this conflict.<br><br>ADAM introduces a <strong>three-band spectral partitioning</strong> strategy: the low-frequency band governs global appearance, a \"donut-shaped\" mid-frequency band anchors structural boundaries, and the high-frequency band handles fine texture. Within the low-frequency band, ADAM decouples amplitude from phase — the conditional amplitude injects target appearance (color, style), while the unconditional phase retains the source geometric layout. This enables disentangled control over appearance and structure without any mask or inversion.",
+    tasks: [
+      "Identified and formalized the core limitation of binary high-pass filtering in frequency-aware editing (appearance locking)",
+      "Designed the three-band spectral partitioning strategy and the Amplitude-Phase Decoupling (AMP) mechanism",
+      "Curated specialized Appearance Splits from LoMoE and OIR benchmarks for global attribute evaluation",
+      "Conducted the full experimental pipeline: implementation, ablation studies, quantitative & qualitative evaluation (CLIP Score, LPIPS on Appearance Test Set and PIE-Bench)"
+    ],
+    pdfs: [
+      { label: "Paper ↗", url: "asset/IPIU_2026_ADAM.pdf" },
+      { label: "Poster ↗", url: "asset/IPIU_Poster.pdf" }
+    ],
+    url: "https://github.com/synuo/AIVISIONLAB/tree/main/ADAM"
+  },
+  "\"BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing\"": {
+    type: "Research", date: "Oct 2025 – Mar 2026", memo: "Preprint · 2nd Author",
+    images: ["image/BindEdit_overview.png"],  
+    overview: "Real-world images contain multiple objects requiring simultaneous editing, but existing methods fail due to <strong>attention leakage</strong>. BindEdit identifies two distinct failure modes:<br><br><strong>Edit-Token Leakage</strong> — target tokens activate across unintended spatial regions, causing identity blending across objects.<br><strong>Source Dominance Leakage</strong> — residual source token attention suppresses target signals within editable regions.<br><br>BindEdit resolves both within a <strong>single diffusion trajectory</strong> via three losses: Attention Binding Guidance (L_bind) enforces semantic binding and instance-level separation; Source Suppression Guidance (L_supp) rebalances cross-attention to suppress source dominance; Region Fidelity (L_fidelity) consolidates scattered attention into a coherent distribution. Achieves highest CLIP-image scores across all benchmarks and 61.47% overall user preference.",
+    tasks: [
+      "Participated in experimental pipeline including quantitative evaluation and extended Multi-Object benchmark",
+      "Contributed to constructing Multi-Bench, a comprehensive multi-object editing benchmark comprising 238 images uniformly covering 1–5+ simultaneous edit targets across diverse object categories and spatial layouts"
+    ],
+    pdfs: [],
+    url: ""
+  },
+  "DART Analysis Agent": {
+    type: "Activity", date: "Sep 2025 – Jan 2026", memo: "Team Project | DACOS (Data Analysis Club of SMWU) 8th",
+    images: ["image/dag.png"],
+    overview: "An AI-powered financial report generation system targeting novice investors, built on Korea's official corporate disclosure platform DART (FSS). The system automatically crawls annual business reports, parses consolidated financial statements and footnotes, computes key financial metrics via a validated calculation pipeline, and generates a structured investment report with cited evidence using a section-parallel LLM Agent architecture. Core design goals: zero hallucination on numerical data, full citation traceability, and reliable QC before any LLM narration.",
+    tasks: [
+      "Financial statement parsing and normalization: automated DART report crawling, section isolation (company overview / business description / consolidated financial statements / notes), table parsing into structured row-column-cell format, and ingestion into DuckDB as SSOT",
+      "Standardized account mapping (account_map_rules) to resolve cross-company naming inconsistencies; long-format normalization (v_fin_long_mapped) for single-source-of-truth financial figures",
+      "Derived metric computation pipeline: YoY delta and growth rate calculation (v_analysis_compare), per-share figures (EPS/BPS/SPS/CFPS via v_value_augmented), and financial ratio generation (ROE, ROA, PER, PBR, PSR, DuPont) via ratio_requirements rules",
+      "QC verification layer: Python re-computation of all SQL-derived values (raw, ratio, derived, market); schema validation, range/sign checks, and PASS/FAIL/WARN status tagging per metric to block hallucination before LLM invocation",
+      "Section-parallel LLM Agent architecture: each report section (1–10) is independently generated via a shared run_section → build_ctx → prompt interface driven by inputs_spec.json; sections 1–8 run in parallel, sections 9–10 receive a bridge summary for coherence",
+      "Final report assembly and PDF export using KANANA LLM for narration, with all numerical claims grounded in pre-verified fact_metrics table"
+    ],
+    url: "https://github.com/DACOS-Data-Analysis-Club-Of-Sookmyung/25-2-team1"
+  },
+  "Mansumugang": {
+    type: "Activity", date: "Dec 2025 – Mar 2026", memo: "Team Project | UMC (University Makeus Challenge) 7th",
+    images: ["image/msmg.png"],  
+    overview: "Senior Health Companion Service. Developed a health assistant app targeting elderly users with limited physical activity.",
+    tasks: ["Backend (Node.js): step-count sync, online store feature, API integration", "CI/CD pipeline via GitHub Actions", "AWS RDS & EC2 deployment"],
+    url: "https://github.com/UMC-MSMG/Backend"
+  },
+  "Trustworthy Amazon Review Model": {
+    type: "Activity", date: "Mar – Jun 2025", memo: "Team Project | DACOS (Data Analysis Club of SMWU) 4th",
+    images: ["image/amazon_review.png"], 
+    overview: "Current review systems rely on simple star-rating averages that can be easily distorted by unreliable or fake reviews. This project builds a <strong>review trustworthiness prediction system</strong> that (1) classifies each review's reliability as 0/1 using a LightGBM model, (2) generates a trust-weighted average rating per product, (3) re-ranks reviews by reliability probability, and (4) extracts TF-IDF keywords from high-trust reviews.<br><br>Two datasets were used: Amazon Sales Dataset (~20K entries) and Amazon Fine Food Reviews (~500K entries). Since the Sales Dataset lacked per-review ratings, BERT-based sentence similarity was used to split compound review strings. Trustworthiness labels were generated via a heuristic scoring system incorporating review length, sentence count, user rating variance, duplicate detection, sentiment-rating alignment (VADER), and pros/cons mentions. A calibrated LightGBM model was trained on TF-IDF vectors and text features (word diversity, empirical wording, rare word ratio), achieving a test F1 of 0.94 and 0.73 on human-labeled ground truth.",
+    tasks: [
+      "Exploratory data analysis: analyzed per-user review count and rating variance distributions across merged datasets to identify trustworthy reviewer patterns",
+      "Heuristic label generation: designed a scoring system combining review length, sentence count, user rating variance, duplicate flag, VADER sentiment-rating diff, and pros/cons detection",
+      "Sentiment analysis pipeline: applied VADER to generate sentiment scores, scaled to rating range via linear transformation, and used sentiment-rating discrepancy as a reliability signal",
+      "Model training: compared Random Forest (F1 0.94) vs LightGBM (F1 0.93); selected LightGBM for speed and tuning flexibility; applied CalibratedClassifierCV (sigmoid) for probability calibration",
+      "Output system: trust-weighted rating recalculation per product, review re-ranking by reliability probability, TF-IDF keyword extraction from high-trust reviews; deployed as a Gradio web demo"
+    ],
+    url: ""
+  },
+  "EXAONE LLM Compression": {
+    type: "Activity", date: "Jan 2026 – Feb 2026", memo: "Team Project | LGAimers 6th, LG AI Research",
+    overview: "Applied quantization and pruning techniques to compress LG's EXAONE on-device model for edge deployment at the LGAimers 6th Hackathon.",
+    tasks: ["Applied GPTQ 4-bit quantization on EXAONE on-device model", "Explored pruning strategies for edge deployment optimization", "Achieved a hackathon score of 0.6 / 1.0"],
+    url: ""
+  },
+  "SWith: Study With Me!": {
+    type: "Activity", date: "Feb 2024 – Jun 2024", memo: "자기주도진로설계프로젝트",
+    overview: "SWith (Study With me) is a study group matching mobile application for students at Sookmyung Women's University. Existing platforms like Everytime and CampusPick rely on anonymity, which reduces accountability and trust. SWith addresses this by requiring Sookmyung email (@sookmyung.ac.kr) verification, providing a closed and trusted environment. Users can post study or competition recruitment listings, apply with pre-screening Q&A responses, and communicate via automatically generated chat rooms upon match completion. Team members can leave star-rated reviews after the study concludes.",
+    tasks: [
+      "Team lead and primary Flutter (frontend) developer across a 16-week development cycle",
+      "Designed and implemented the login, registration, and email verification flow (Sookmyung domain validation, duplicate checks, 6-digit verification code via SMTP)",
+      "Built the main feed, post list, category/hashtag filtering, search, and post detail screens (author and applicant views with Q&A tab)",
+      "Implemented applicant management: pre-screening question authoring, answer review, and accept/reject flow with automatic chat room creation on recruitment close",
+      "Developed the My Page section: profile editing, my recruitment/application/scrap history, study member list, and star-rating review system",
+      "Contributed to DB schema design (ER diagram), requirements specification, and full frontend–backend integration (Node.js + MySQL, hosted on AWS EC2/RDS)"
+    ],
+    url: "https://canva.link/ocbx5zqrvpk9skf"
+  },
+  "Hand Tracking": {
+    type: "Course", date: "Sep 2025", memo: "Computer Vision (Course Project)",
+    overview: "Implemented a real-time hand detection and tracking system using OpenCV, without any deep learning model. Skin color segmentation in YCrCb color space isolates hand regions, while optical flow and motion masking detect movement. The system operates in two modes: Searching Mode (scanning for skin + motion) and Tracking Mode (narrowing search to the ROI of the previous frame for speed and stability). Face regions are detected and excluded first to prevent hand/face confusion. Hand center is estimated via convexity defects (Moments) or distance transform for closed fists.",
+    tasks: [
+      "Skin segmentation using YCrCb color space (Cr: 133–173, Cb: 77–127) with Morphology Opening/Closing for noise removal",
+      "Motion mask via frame differencing (absdiff) with threshold binarization to isolate moving regions",
+      "Face exclusion using contour area, aspect ratio, solidity, circularity, and motion ratio heuristics",
+      "Dual-mode tracking: Searching Mode (skin ∩ motion) → Tracking Mode (ROI-constrained skin mask) for efficiency",
+      "Hand center estimation: convexityDefects + Moments for open hand; distanceTransform for closed fist"
+    ],
+    url: ""
+  },
+  "EasyPosie": {
+    type: "Course", date: "Mar – Jun 2025", memo: "Generative AI (Course Project)",
+    images: ["image/EasyPosie.png"],
+    overview: "A GenAI-based personalized photography guide system. Motivated by the difficulty of replicating stylish poses from reference images, the project builds a pipeline that analyzes an uploaded photo and generates both visual and text-based shooting instructions. BLIP captions the image, SAM2 extracts the subject silhouette, MediaPipe detects key joint positions, a 3×3 grid overlay is applied, and GPT-4 synthesizes the spatial hints into natural-language coaching advice. The full pipeline was deployed as a Gradio web service.",
+    tasks: [
+      "Image captioning with BLIP (Salesforce/blip-image-captioning-base) and GPT-4-based Korean translation",
+      "Subject silhouette extraction using SAM2 with center-point prompting; mask overlaid on the original image",
+      "Key joint localization (face, shoulders, elbows, wrists, knees, ankles) via MediaPipe Pose, visualized with color-coded labels",
+      "3×3 grid generation and grid-cell assignment for each joint; grid hint string passed to GPT-4 as spatial context",
+      "GPT-4 prompt engineering to generate 4–6 sentence advisory shooting guides covering pose, gaze, expression, camera angle, and atmosphere",
+      "End-to-end Gradio web deployment with before/after image view, caption output, and guide text panel"
+    ],
+    url: ""
+  },
+  "Tactile Paving Detection": {
+    type: "Course", date: "Oct – Dec 2025", memo: "Computer Vision (Course Project)",
+    images: ["image/Tactile.png"],
+    overview: "Implemented a real-time tactile paving (braille block) detection system for visually impaired pedestrians. Compared YOLOv5, YOLOv8, and YOLOv11s-seg models, ultimately adopting polygon-based instance segmentation to capture the long, continuous nature of tactile blocks. Added negative samples (brick-pattern sidewalks, manhole covers) and applied HSV-based augmentation to reduce false positives in nighttime and outdoor environments. Deployed as a Gradio web service where users upload video and receive annotated output with real-time FPS and inference stats.",
+    tasks: [
+      "Comparative experiments across YOLOv5 / YOLOv8 / YOLOv11s-seg (evaluated by mask mAP)",
+      "Adopted polygon-based instance segmentation over bounding boxes to handle the elongated, continuous shape of tactile blocks",
+      "Designed negative sample dataset: brick-patterned blocks, manhole covers, and other visually similar objects to suppress false positives",
+      "Applied HSV color augmentation (hsv_s=0.6, hsv_v=0.5) and brightness variation for robustness in outdoor/nighttime conditions",
+      "Deployed inference pipeline as a Gradio web service with confidence/NMS/resolution sliders and real-time performance feedback"
+    ],
+    url: ""
+  },
+  "WakeupBuddy": {
+    type: "Course", date: "Sep – Dec 2024", memo: "HCI Capstone · Computer Vision (Course Project)",
+    images: ["image/WakeupBuddy.png"],
+    overview: "Developed WakeupBuddy — a drowsiness prevention device and web service for students using EEG (brainwave) signals. The Muse2 headband collects raw EEG data, which is preprocessed via STFT/FFT to classify drowsiness in real time. When drowsiness is detected, an Arduino vibration module alerts the user. A companion web service visualizes learning statistics and allows users to set personalized thresholds. The vibration module was redesigned into a wristband form factor for comfort during extended use.",
+    tasks: [
+      "EEG data collection and preprocessing: collected brainwave data via muselsl library, removed eye-blink artifacts with ICA, applied STFT for time-frequency analysis",
+      "Drowsiness detection algorithm: computed per-channel power via FFT, derived user-specific threshold from drowsy/non-drowsy average power ratio, classified state every 5 seconds in real time",
+      "Arduino vibration module integration: serial communication between Python and Arduino, PWM-based vibration intensity control",
+      "Backend (Node.js) development and frontend integration; learning session statistics saved as JSON and visualized as graphs",
+      "UI/UX design prototype in Figma"
+    ],
+    url: "https://github.com/HCI-WakeupBuddy/muse2_python"
+  },
+  "Automatic Lane Detection for Smart Car": {
+    type: "Course", date: "Oct 2025", memo: "Computer Vision (Course Project)",
+    images: ["image/lanedetection.png"],
+    overview: "Implemented a real-time lane detection and departure warning system for dashcam footage. A trapezoidal ROI focuses computation on the driving zone, and a triangular exclusion mask suppresses road center markings (arrows, diamonds) that interfere with lane detection. The detection pipeline runs Canny edge detection followed by HoughLinesP, with fitLine() fitting representative lines for left and right lanes. To maintain real-time performance, lane computation runs on only 4 of every 39 frames in normal driving; if a lane departure is detected, it switches to 10-frame continuous processing. Smoothing prevents abrupt line jumps.",
+    tasks: [
+      "Trapezoidal ROI and triangular exclusion mask to isolate driving lane and remove center-road markers",
+      "Preprocessing pipeline: grayscale → 5×5 Gaussian Blur → Canny edge detection (minVal 50, maxVal 150)",
+      "Lane line fitting: HoughLinesP on masked edge image, then fitLine() to compute representative left/right lane lines",
+      "Departure detection: slope and position change thresholds trigger extended 10-frame processing mode",
+      "Frame-rate optimization: 4/39 frame sampling in safe state; real-time 'Safe / leaving the lane' overlay"
+    ],
+    url: ""
+  },
+  "What's your MBTI? — 너 T야?": {
+    type: "Course", date: "Mar – Jun 2025", memo: "Text Mining & NLP (Course Project)",
+    images: ["image/tmnlp.png"],
+    overview: "A text mining project investigating whether MBTI T/F (and N/S) tendencies are reflected in actual language use. Two datasets were used: (1) personality type description texts scraped from 16Personalities.com for all 16 MBTI types, and (2) real KakaoTalk conversation logs from 8 friends with known MBTI labels. The project analyzes lexical differences between types via TF-IDF, then builds a Logistic Regression classifier that combines TF-IDF text vectors with emotional expression features (laughter markers, emoji, punctuation) for T/F prediction.",
+    tasks: [
+      "Dataset 1 — 16Personalities text collection: scraped Korean personality descriptions for all 16 types, labeled each with T/F and N/S tags, removed recurring type names, and extracted nouns via KoNLPy Okt morphological analyzer",
+      "TF-IDF analysis on T/F/N/S types to identify top-50 characteristic words per group; derived custom stopword lists by filtering shared terms with near-zero score differences across types",
+      "Key findings from TF-IDF: T-type top words — '행동', '사실', '책임', '제기'; F-type — '관계', '공감', '배려', '추구'; N-type — '아이디어', '상상력', '논쟁'; S-type — '직접', '현재', '책임감'",
+      "WordCloud visualization of top TF-IDF terms per personality type",
+      "Dataset 2 — KakaoTalk conversation preprocessing: parsed [name][timestamp] format txt files, merged consecutive short messages within 5 seconds, extracted three boolean features (laughter: ㅋㅋ/ㅎㅎ, emoji, emotion_mark: !/?) per message",
+      "Text-only baseline: applied 16Personalities-derived TF-IDF vocabulary to conversation messages → all 8 users predicted as F/S, indicating word-level features alone are insufficient for casual conversation",
+      "Multi-channel classifier: combined TF-IDF sparse vectors with emotional feature columns via scipy hstack → trained Logistic Regression (accuracy 0.60, weighted F1 0.60); T-type users showed higher laughter frequency, F-type users showed more emoji and punctuation use"
+    ],
+    url: ""
+  },
+  "Interactive Playlist": {
+    type: "Fun", date: "", memo: "Vibe Coding",
+    overview: "Interactive music playlist. Add your favorite songs!",
+    images: ["image/InteractivePlaylist.png"],
+    tasks: [],
+    url: "https://synuo.github.io/InteractivePlaylist/"
+  }
+};
+
+// Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cards.forEach(card => {
+      const show = f === 'all' || card.dataset.type === f;
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+// Modal
+const overlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+
+const tagColorMap = {
+  Research: 'tag-Research',
+  Activity: 'tag-Activity',
+  Course: 'tag-Course',
+  Fun: 'tag-Fun'
+};
+
+const tagLabelMap = {
+  Research: 'Research',
+  Activity: 'Activity',
+  Course: 'Course Project',
+  Fun: 'Vibe Coding'
+};
+
+function openModal(name) {
+  const p = projects[name];
+  if (!p) return;
+
+  document.getElementById('modalTags').innerHTML =
+    `<span class="tag ${tagColorMap[p.type]}">${tagLabelMap[p.type]}</span>`;
+  document.getElementById('modalTitle').textContent = name;
+
+  let meta = '';
+  if (p.date) meta += `<span>${p.date}</span>`;
+  if (p.memo) meta += `<span>${p.memo}</span>`;
+  document.getElementById('modalMeta').innerHTML = meta;
+
+  let body = '';
+
+  if (p.images && p.images.length > 0) {
+    body += `<div class="modal-section">
+      ${p.images.map(src => `<img src="${src}" style="width:100%;border-radius:2px;margin-bottom:10px;border:1px solid var(--border);" />`).join('')}
+    </div>`;
+  }
+
+  if (p.overview) {
+    body += `<div class="modal-section">
+      <p class="modal-section-title">Overview</p>
+      <p>${p.overview}</p>
+    </div>`;
+  }
+
+  if (p.url || (p.pdfs && p.pdfs.length > 0)) {
+    body += `<div class="modal-section">
+      <p class="modal-section-title">Links</p>
+      <div class="modal-link-list">
+        ${p.url ? `<a href="${p.url}" target="_blank" class="modal-link">GitHub ↗</a>` : ''}
+        ${p.pdfs && p.pdfs.length > 0 ? p.pdfs.map(pdf => `<a href="${pdf.url}" target="_blank" class="modal-link">${pdf.label}</a>`).join('') : ''}
+      </div>
+    </div>`;
+  }
+
+  if (p.tasks && p.tasks.length > 0) {
+    body += `<div class="modal-section">
+      <p class="modal-section-title">Key Contributions</p>
+      <ul>${p.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
+    </div>`;
+  }
+
+  document.getElementById('modalBody').innerHTML = body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.querySelector('.project-name').textContent.trim();
+    openModal(name);
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
