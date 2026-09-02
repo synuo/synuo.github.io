@@ -380,33 +380,6 @@
 
   .tag-Research { background: #fde8ec; color: #852936; }
 
-  /* ── CERTIFICATIONS ── */
-  .cert-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
-    gap: 14px;
-  }
-
-  .cert-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 18px 18px 16px;
-  }
-
-  .cert-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-
-  .cert-detail {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
@@ -605,7 +578,6 @@
     main { padding: 100px 20px 60px; }
     .hero { grid-template-columns: 1fr; gap: 28px; }
     .edu-item, .exp-item { grid-template-columns: 1fr; gap: 6px; }
-    .cert-list { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
@@ -617,7 +589,6 @@
   <ul class="nav-links">
     <li><a href="#education">Education</a></li>
     <li><a href="#research">Research</a></li>
-    <li><a href="#experience">Experience</a></li>
   </ul>
 </nav>
 
@@ -629,10 +600,9 @@
       <img src="image/Me.JPG" class="hero-photo" alt="Soyun Lee">
     </div>
     <div class="hero-right">
-
       <h1 class="hero-name">Soyun<br><em>Lee.</em></h1>
       <p class="hero-bio">
-        Hello. I'm an M.S. student at KAIST, Graduate School of Metaverse.
+        Hello. I'm an M.S. student at KAIST's Graduate School of Metaverse.
         My research focuses on computer vision, particularly generative modeling and interaction for extended reality applications.
       </p>
       <div class="hero-interests">
@@ -649,6 +619,7 @@
         <a href="https://github.com/synuo" class="hero-link" target="_blank">GitHub ↗</a>
         <a href="https://linkedin.com/in/synuolee" class="hero-link" target="_blank">LinkedIn ↗</a>
         <a href="mailto:synuolee@kaist.ac.kr" class="hero-link" target="_blank">synuolee@kaist.ac.kr ↗</a>
+        <a href="asset/CV_Soyun_Lee.pdf" class="hero-link" target="_blank">CV ↗</a>
       </div>
     </div>
   </section>
@@ -699,10 +670,13 @@
         <div>
           <div class="exp-org">KCVL</div>
           <div class="exp-role">M.S. Student Researcher</div>
-          <div class="exp-desc">KAIST Computer Vision and Learning Lab @ KAIST · Advised by <a href="https://sites.google.com/view/tkkim/home" target="_blank" rel="noopener noreferrer" style="color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">Prof. Tae-Kyun Kim</a></div>
+          <div class="exp-desc">Computer Vision and Learning Lab (KCVL) @ KAIST · Advised by <a href="https://sites.google.com/view/tkkim/home" target="_blank" rel="noopener noreferrer" style="color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">Prof. Tae-Kyun Kim</a></div>
         </div>
       </div>
+    </div>
 
+    <div style="margin-bottom:24px;">
+      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Lab Affiliation</p>
       <div class="exp-item" style="margin-bottom:0;">
         <div class="exp-date">Sep 2025 –<br>Aug 2026</div>
         <div>
@@ -767,43 +741,6 @@
             <a href="asset/Lab_Seminar_PNP.pdf" target="_blank" style="display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#852936;text-decoration:none;border-bottom:1px solid #fde8ec;padding-bottom:1px;">PDF ↗</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Experience</h2>
-    </div>
-    <div class="exp-list">
-      <div class="exp-item">
-        <div class="exp-date">Mar 2025 –<br>Jun 2025</div>
-        <div>
-          <div class="exp-org">Bagstrap (가방끈)</div>
-          <div class="exp-role">Data Engineering Intern</div>
-          <div class="exp-desc">
-            <ul>
-              <li>Engineered modular web crawling pipelines using Python (BeautifulSoup, Selenium) to extract and structure academic data from university lab websites and researcher directories.</li>
-              <li>Implemented scalable data collection systems for Google Scholar and academic paper metadata, organizing data into hierarchical formats for downstream analysis.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section id="certifications">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Qualifications</h2>
-    </div>
-    <div class="cert-list">
-      <div class="cert-item">
-        <h3 class="cert-name">TOEFL iBT</h3>
-        <p class="cert-detail">Score: 102<br>Sep 2024</p>
       </div>
     </div>
   </section>
